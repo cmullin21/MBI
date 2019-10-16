@@ -78,7 +78,7 @@
             </div>
             <div class="form-group">
               <label for="addedBy">Added By</label>
-              <input type="text" class="form-control" name="addedBy" required placeholder="Enter Your Name">
+              <input type="text" class="form-control" name="addedBy" readonly value="<?php echo ucwords($_SESSION["username"])?>">
             </div>
             <div class="form-group">
               <label for="accountOrder">Order</label>
