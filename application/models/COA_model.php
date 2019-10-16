@@ -45,12 +45,6 @@ class COA_model extends CI_Model {
       'normalSide' => $this->input->post('normalSide'),
       'accountCategory' => $this->input->post('accountCategory'),
       'accountSubcategory' => $this->input->post('accountSubcategory'),
-      'initialBalance' => $this->input->post('initialBalance'),
-      'debit' => $this->input->post('debit'),
-      'credit' => $this->input->post('credit'),
-      'balance' => $this->input->post('balance'),
-      'addedBy' => $this->input->post('addedBy'),
-      'accountOrder' => $this->input->post('accountOrder'),
       'statement' => $this->input->post('statement'),
       'comment' => $this->input->post('comment')
     );
@@ -58,8 +52,4 @@ class COA_model extends CI_Model {
     $this->db->update('chartsofaccounts', $data);
   }
 
-  function deleteData($accountNumber){
-    $this->db->where('accountNumber', $accountNumber);
-    $this->db->delete('chartsofaccounts');
-  }
 }

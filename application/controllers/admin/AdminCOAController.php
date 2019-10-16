@@ -27,7 +27,7 @@ class AdminCOAController extends CI_Controller {
     $this->load->view('footers/footer');
    }
 
-  public function update($accountNumber) {
+  public function updateData($accountNumber) {
     $this->COA_model->updateData($accountNumber);
     redirect("admin/AdminCOAController");
   }

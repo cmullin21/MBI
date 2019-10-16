@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <form method="post" action="<?php echo site_url('admin/AdminCOAController/update')?>/<<?php echo $row->accountNumber ?>">
+    <form method="post" action="<?php echo site_url('admin/AdminCOAController/updateData')?>/<?php echo $row->accountNumber ?>">
       <div class="form-group">
         <label for="accountName">Account Name</label>
         <input type="text" class="form-control" name="accountName" value="<?php echo $row->accountName; ?>" required placeholder="Enter Account name">

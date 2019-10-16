@@ -47,7 +47,10 @@
                               <option>Accountant</option>
                             </select>
                           </div>
-                        <button type="submit" class="btn btn-primary" value="save">Submit</button>
+                          <button type="submit" class="btn btn-primary" value="save">Submit</button>
+                          <div>
+                            <button type="button" class="btn btn-link"><a href="Login">Cancel<a></button>
+                          </div>
                       </form>
                 </form>
             </div>
