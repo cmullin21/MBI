@@ -16,7 +16,6 @@ class Journal_model extends CI_Model {
     $data = array(
       'accountTitleDebit' => $this->input->post('accountTitleDebit'),
       'accountTitleCredit' => $this->input->post('accountTitleCredit'),
-      'PR' => $this->input->post('PR'),
       'debit' => $this->input->post('debit'),
       'credit' => $this->input->post('credit'),
       'description' => $this->input->post('description'),

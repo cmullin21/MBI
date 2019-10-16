@@ -49,7 +49,7 @@
     <div class="col-sm">
       <div class="form-group">
           <label for="PR">Reference Number</label>
-          <input type="number" class="form-control" name="PR" required readonly value="<?php echo $row->PR; ?>">
+          <input type="number" class="form-control" name="PR" required readonly value="<?php echo $row->id; ?>">
         </div>
     </div>
     <div class="col-sm">

@@ -18,7 +18,7 @@
 
   <body>
     <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
-      <a href="<?php echo site_url('admin/Admin');?>" class="navbar-brand d-flex w-50 mr-auto">MBI<img src="<?php echo base_url(); ?>/assets/images/MBILogo.png"></a>
+      <a href="<?php echo site_url('admin/Admin');?>" class="navbar-brand d-flex w-50 mr-auto"><img src="<?php echo base_url(); ?>/assets/images/MBILogo.png"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
           <span class="navbar-toggler-icon"></span>
       </button>

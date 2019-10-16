@@ -90,14 +90,8 @@
           <div class="row">
             <div class="col-sm">
               <div class="form-group">
-                  <label for="PR">Reference Number</label>
-                  <input type="number" class="form-control" name="PR" required placeholder="Enter Reference Number">
-                </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-group">
                 <label for="addedBy">Added By</label>
-                <input type="text" class="form-control" name="addedBy" required placeholder="Enter Name">
+                <input type="text" class="form-control" name="addedBy" readonly value="<?php echo ucwords($_SESSION["username"])?>">
               </div>
             </div>
             <div class="col-sm">
@@ -109,6 +103,8 @@
                     <option>Rejected</option>
                   </select>
                 </div>
+            </div>
+            <div class="col-sm">
             </div>
           </div>
           <br>
@@ -154,7 +150,7 @@
           <tr>
             <td class="text-center"><?php echo $row->date; ?></td>
             <td><?php echo $row->accountTitleDebit; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('manager/ManagerJournalController/view');?>/<?php echo $row->id;?>">GJ<?php echo $row->PR; ?></td>
+            <td class="text-center"><a href="<?php echo site_url('manager/ManagerJournalController/view');?>/<?php echo $row->id;?>">GJ<?php echo $row->id; ?></td>
             <td class="text-right">$<?php echo $row->debit; ?>.00</td>
             <td></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
@@ -169,15 +165,16 @@
             <td class="text-right">$<?php echo $row->credit; ?>.00</td>
             <td></td>
             <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td colspan="7"><?php echo $row->description; ?></td>
+            <td colspan="8"><?php echo $row->description; ?></td>
           </tr>
           <tr>
-            <td colspan="7"><strong><?php echo $row->statusDesc; ?></strong></td>
+            <td colspan="8"><strong><?php echo $row->statusDesc; ?></strong></td>
           </tr>
           <tr>
-            <td colspan="7"></td>
+            <td colspan="8"></td>
           </tr>
 
         <?php }?>

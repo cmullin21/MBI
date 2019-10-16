@@ -89,14 +89,8 @@
           <div class="row">
             <div class="col-sm">
               <div class="form-group">
-                  <label for="PR">Reference Number</label>
-                  <input type="number" class="form-control" name="PR" required placeholder="Enter Reference Number">
-                </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-group">
                 <label for="addedBy">Added By</label>
-                <input type="text" class="form-control" name="addedBy" required placeholder="Enter Name">
+                <input type="text" class="form-control" name="addedBy" readonly value="<?php echo ($_SESSION["username"])?>">
               </div>
             </div>
             <div class="col-sm">
@@ -106,6 +100,9 @@
                     <option>Pending</option>
                   </select>
                 </div>
+            </div>
+            <div class="col-sm">
+
             </div>
           </div>
           <br>
@@ -150,7 +147,7 @@
           <tr>
             <td class="text-center"><?php echo $row->date; ?></td>
             <td><?php echo $row->accountTitleDebit; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('accountant/AccountantJournalController/checkAccounts');?>/<?php echo $row->id;?>">GJ<?php echo $row->PR; ?></td>
+            <td class="text-center"><a href="<?php echo site_url('accountant/AccountantJournalController/checkAccounts');?>/<?php echo $row->id;?>">GJ<?php echo $row->id; ?></td>
             <td class="text-right">$<?php echo $row->debit; ?>.00</td>
             <td></td>
             <td class="text-center"><?php echo $row->status; ?></td>
