@@ -57,9 +57,15 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="accountSubcategory">Subcategory</label>
-              <input type="text" class="form-control" name="accountSubcategory" required placeholder="Enter Subcategory">
-            </div>
+                <label for="accountSubcategory">Choose Subcategory</label>
+                <select class="form-control" name="accountSubcategory" required>
+                  <?php
+                  foreach($subcategories as $row){
+                    echo '<option value="'.$row->subcategoryName.'">'.$row->subcategoryName.'</option>';
+                  }
+                  ?>
+                </select>
+              </div>
             <div class="form-group">
               <label for="initialBalance">Initial Balance</label>
               <input type="number" class="form-control" step="0.01" name="initialBalance" required placeholder="Enter Initial Balance - Defaults to 0.00">

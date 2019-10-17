@@ -10,6 +10,7 @@ class AdminCOAController extends CI_Controller {
 	public function index()
 	{
     $data['result'] = $this->COA_model->getAllData();
+    $data['subcategories'] = $this->COA_model->getSubcategories();
     $this->load->view('headers/adminHeader');
 		$this->load->view('admin/adminCOA', $data);
     $this->load->view('footers/footer');

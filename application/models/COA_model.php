@@ -32,6 +32,11 @@ class COA_model extends CI_Model {
     return $query->result();
   }
 
+  function getSubcategories(){
+    $query = $this->db->query('SELECT subcategoryName FROM subcategories');
+    return $query->result();
+  }
+
   function getData($accountNumber) {
     $query = $this->db->query('SELECT * FROM chartsofaccounts WHERE `accountNumber` =' .$accountNumber);
     return $query->row();
