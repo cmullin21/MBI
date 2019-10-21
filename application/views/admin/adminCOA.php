@@ -1,3 +1,13 @@
+<head>
+  <style>
+    .column-clickable {
+        color: white;
+    }
+    .column-clickable:hover {
+        color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
 
 <!-- Button trigger modal -->
 <div class="container">
@@ -112,44 +122,44 @@
     <table class="table table-striped table-bordered">
       <thead class="thead-dark">
         <tr>
-          <th class="text-center" scope="col">Account Name</th>
-          <th class="text-center" scope="col">Account Number</th>
-          <th class="text-center" scope="col">Account Description</th>
-          <th class="text-center" scope="col">Normal Side</th>
-          <th class="text-center" scope="col">Account Category</th>
-          <th class="text-center" scope="col">Account Subcategory</th>
-          <th class="text-center" scope="col">Initial Balance</th>
-          <th class="text-center" scope="col">Debit</th>
-          <th class="text-center" scope="col">Credit</th>
-          <th class="text-center" scope="col">Balance</th>
-          <th class="text-center" scope="col">Date Added</th>
-          <th class="text-center" scope="col">Added By</th>
-          <th class="text-center" scope="col">Account Order</th>
-          <th class="text-center" scope="col">Statement</th>
-          <th class="text-center" scope="col">Comments</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountName">Account Name</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountNumber">Account Number</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountDescription">Account Description</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=normalSide">Normal Side</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountCategory">Account Category</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountSubcategory">Account Subcategory</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=initialBalance">Initial Balance</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=debit">Debit</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=credit">Credit</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=balance">Balance</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=dateTimeAdded">Date Added</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=addedBy">Added By</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountOrder">Account Order</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=statement">Statement</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=comment">Comments</th>
           <th class="text-center" scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach($result as $row) {?>
-        <tr>
-        <th scope="row" class="text-center"><?php echo $row->accountName;  ?></th>
-        <td class="text-center"><?php echo $row->accountNumber; ?></td>
-        <td class="text-center"><?php echo $row->accountDescription; ?></td>
-        <td class="text-center"><?php echo $row->normalSide; ?></td>
-        <td class="text-center"><?php echo $row->accountCategory; ?></td>
-        <td class="text-center"><?php echo $row->accountSubcategory; ?></td>
-        <td class="text-right">$<?php echo $row->initialBalance; ?>.00</td>
-        <td class="text-right">$<?php echo $row->debit; ?>.00</td>
-        <td class="text-right">$<?php echo $row->credit; ?>.00</td>
-        <td class="text-right">$<?php echo $row->balance; ?>.00</td>
-        <td class="text-center"><?php echo $row->dateTimeAdded; ?></td>
-        <td class="text-center"><?php echo $row->addedBy; ?></td>
-        <td class="text-center">0<?php echo $row->accountOrder; ?></td>
-        <td class="text-center"><?php echo $row->statement; ?></td>
-        <td class="text-center"><?php echo $row->comment; ?></td>
-        <td class="text-center"><a href="<?php echo site_url('admin/AdminCOAController/edit');?>/<?php echo $row->accountNumber;?>"> Edit</a></tr>
-      <tr>
-  <?php }?>
-  </tbody>
+          <tr>
+            <th scope="row" class="text-center"><?php echo $row->accountName;  ?></th>
+            <td class="text-center"><?php echo $row->accountNumber; ?></td>
+            <td class="text-center"><?php echo $row->accountDescription; ?></td>
+            <td class="text-center"><?php echo $row->normalSide; ?></td>
+            <td class="text-center"><?php echo $row->accountCategory; ?></td>
+            <td class="text-center"><?php echo $row->accountSubcategory; ?></td>
+            <td class="text-right">$<?php echo $row->initialBalance; ?>.00</td>
+            <td class="text-right">$<?php echo $row->debit; ?>.00</td>
+            <td class="text-right">$<?php echo $row->credit; ?>.00</td>
+            <td class="text-right">$<?php echo $row->balance; ?>.00</td>
+            <td class="text-center"><?php echo $row->dateTimeAdded; ?></td>
+            <td class="text-center"><?php echo $row->addedBy; ?></td>
+            <td class="text-center">0<?php echo $row->accountOrder; ?></td>
+            <td class="text-center"><?php echo $row->statement; ?></td>
+            <td class="text-center"><?php echo $row->comment; ?></td>
+            <td class="text-center"><a href="<?php echo site_url('admin/AdminCOAController/edit');?>/<?php echo $row->accountNumber;?>"> Edit</a></tr>
+          <tr>
+        <?php }?>
+      </tbody>
   </table>

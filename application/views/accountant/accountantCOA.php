@@ -1,23 +1,33 @@
+<head>
+  <style>
+    .column-clickable {
+        color: white;
+    }
+    .column-clickable:hover {
+        color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
 <h3 class="text-center">Charts of Accounts</h3>
   <br>
     <table class="table table-striped table-bordered">
       <thead class="thead-dark">
         <tr>
-          <th class="text-center" scope="col">Account Name</th>
-          <th class="text-center" scope="col">Account Number</th>
-          <th class="text-center" scope="col">Account Description</th>
-          <th class="text-center" scope="col">Normal Side</th>
-          <th class="text-center" scope="col">Account Category</th>
-          <th class="text-center" scope="col">Account Subcategory</th>
-          <th class="text-center" scope="col">Initial Balance</th>
-          <th class="text-center" scope="col">Debit</th>
-          <th class="text-center" scope="col">Credit</th>
-          <th class="text-center" scope="col">Balance</th>
-          <th class="text-center" scope="col">Date Added</th>
-          <th class="text-center" scope="col">Added By</th>
-          <th class="text-center" scope="col">Account Order</th>
-          <th class="text-center" scope="col">Statement</th>
-          <th class="text-center" scope="col">Comments</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountName">Account Name</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountNumber">Account Number</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountDescription">Account Description</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=normalSide">Normal Side</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountCategory">Account Category</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountSubcategory">Account Subcategory</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=initialBalance">Initial Balance</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=debit">Debit</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=credit">Credit</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=balance">Balance</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=dateTimeAdded">Date Added</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=addedBy">Added By</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=accountOrder">Account Order</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=statement">Statement</th>
+          <th class="text-center" scope="col"><a class="column-clickable" href="?sort=comment">Comments</th>
         </tr>
       </thead>
       <tbody>

@@ -27,9 +27,14 @@ class COA_model extends CI_Model {
     $this->db->insert('chartsofaccounts', $data);
   }
 
-  function getAllData(){
-    $query = $this->db->query('SELECT * FROM chartsofaccounts');
-    return $query->result();
+  function getAllData($providedQuery){
+    if ($providedQuery != "normal"){
+      $query = $this->db->query($providedQuery);
+      return $query->result();
+    } else {
+      $query = $this->db->query('SELECT * FROM chartsofaccounts');
+      return $query->result();
+    }
   }
 
   function getSubcategories(){
