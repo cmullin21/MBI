@@ -14,7 +14,7 @@
                   <div class="text-center">
                     <img src="<?php echo base_url(); ?>/assets/images/MBILogo2.png">
                   </div>
-                    <h2>Login</h2>
+                    <h2>Sign In</h2>
                     <div class='form-group'>
                         <label for="inputUsername">Username</label>
                         <input type="username" class="form-control" id="inputEmail" name="username" aria-describedby="emailHelp" placeholder="Username">
