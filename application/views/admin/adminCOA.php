@@ -159,7 +159,6 @@
             <td class="text-center"><?php echo $row->statement; ?></td>
             <td class="text-center"><?php echo $row->comment; ?></td>
             <td class="text-center"><a href="<?php echo site_url('admin/AdminCOAController/edit');?>/<?php echo $row->accountNumber;?>"> Edit</a></tr>
-          <tr>
         <?php }?>
       </tbody>
   </table>

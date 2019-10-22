@@ -3,7 +3,7 @@
     <div class="col">
     </div>
     <div class="col-6">
-      <h3 class="text-center">Ledger</h3>
+      <h3 class="text-center">Journal</h3>
     </div>
     <div class="col">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">New Entry</button>

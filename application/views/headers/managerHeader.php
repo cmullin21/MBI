@@ -30,8 +30,17 @@
               <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('manager/ManagerCOAController/');?>">Accounts</a>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Journal
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">New Journal</a>
+                  <a class="dropdown-item" href="<?php echo site_url('manager/ManagerJournalController/');?>">View Journals</a>
+                </div>
+              </li>
               <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url('manager/ManagerJournalController/');?>">Ledger</a>
+                <a class="nav-link" href="#">Ledger</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +49,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Balance Sheet</a>
                   <a class="dropdown-item" href="#">Income Statement</a>
-                  <a class="dropdown-item" href="#">Retained Earning Statement</a>
+                  <a class="dropdown-item" href="#">Statement of Retained Earning</a>
                   <a class="dropdown-item" href="#">Trial Balance</a>
                 </div>
               </li>
