@@ -82,6 +82,7 @@
             <th class="text-center" scope="col">Address</th>
             <th class="text-center" scope="col">Birthday</th>
             <th class="text-center" scope="col">Job Level</th>
+            <th class="text-center" scope="col">Active</th>
             <th class="text-center" scope="col">Actions</th>
           </tr>
         </thead>
@@ -95,6 +96,7 @@
             <td class="text-center"><?php echo $row->address; ?></td>
             <td class="text-center"><?php echo $row->birthday; ?></td>
             <td class="text-center"><?php echo $row->level; ?></td>
+            <td class="text-center"><?php echo $row->active; ?></td>
             <td class="text-center"><a href="<?php echo site_url('admin/AdminUserController/edit');?>/<?php echo $row->id;?>"> Edit</a>
           </tr>
           <tr>

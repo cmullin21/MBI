@@ -22,13 +22,21 @@
             <input type="text" class="form-control" name="address" value="<?php echo $row->address; ?>" placeholder="Enter Address">
           </div>
           <div class="form-group">
-              <label for="joblevel">Select Job Level</label>
-              <select class="form-control" name="level" value="<?php echo $row->level; ?>" >
-                <option>Admin</option>
-                <option>Manager</option>
-                <option>Accountant</option>
-              </select>
-            </div>
-
+            <label for="joblevel">Select Job Level</label>
+            <select class="form-control" name="level" value="<?php echo $row->level; ?>" >
+              <option>Admin</option>
+              <option>Manager</option>
+              <option>Accountant</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="active">Active</label>
+            <select class="form-control" name="active" value="<?php echo $row->active; ?>" >
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
           <button type="submit" class="btn btn-primary" value="save">Submit</button>
         </form>
+    </div>
+  </body>

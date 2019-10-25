@@ -39,6 +39,7 @@ class User_model extends CI_Model {
       'email' => $this->input->post('email'),
       'address' => $this->input->post('address'),
       'level' => $this->input->post('level'),
+      'active' => $this->input->post('active')
     );
     $this->db->where('ID', $ID);
     $this->db->update('users', $data);
