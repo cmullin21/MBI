@@ -27,6 +27,11 @@ class COA_model extends CI_Model {
     $this->db->insert('chartsofaccounts', $data);
   }
 
+  function addAccount($data){
+    // insert data into database
+    $this->db->insert('chartsofaccounts', $data);
+  }
+
   function getAllData($providedQuery){
     if ($providedQuery != "normal"){
       $query = $this->db->query($providedQuery);
@@ -46,7 +51,11 @@ class COA_model extends CI_Model {
     $query = $this->db->query('SELECT * FROM chartsofaccounts WHERE `accountNumber` =' .$accountNumber);
     return $query->row();
   }
-
+  // ----- NEW -----
+  function updateAccount($data){
+    // edit user based on row/ID
+    // ... Coming soon
+  }
   function updateData($accountNumber) {
     $data = array(
       'accountName' => $this->input->post('accountName'),
