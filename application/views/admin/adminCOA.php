@@ -192,6 +192,11 @@
 
 
 <br>
+	<!--NEW Search Box with 'Search' Button-->
+	<?=form_open('admin/AdminCOAController');?>
+  <?php $search = array('accountName'=>'search','accountNumber'=>'search');?>
+  <?=form_input($search);?><input type = submit value='Search' /></p>
+  <?=form_close();?>
 <!-- Table -->
 <div class="container">
   <table class="table table-striped table-bordered">
