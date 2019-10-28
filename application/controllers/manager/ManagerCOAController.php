@@ -6,6 +6,8 @@ class ManagerCOAController extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('COA_model');
+    $this->load->library('usertracking'); 
+    $this->usertracking->track_this();
   }
 	public function index()
 	{
