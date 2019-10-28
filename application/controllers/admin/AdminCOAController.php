@@ -154,4 +154,10 @@ class AdminCOAController extends CI_Controller {
     $this->COA_model->updateData($accountNumber);
     redirect("admin/AdminCOAController");
   }
+	//NEW
+  function search()
+  {
+    $data['query'] = $this->COA_model->get_search();
+    $this->load->view('chartsofaccounts',$data);
+  }
 }
