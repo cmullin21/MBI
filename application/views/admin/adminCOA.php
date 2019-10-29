@@ -199,6 +199,7 @@
   <?=form_close();?>
 <!-- Table -->
 <div class="container">
+<input id="filter" type="text" class="form-control" style="padding-bottom: 10px;" placeholder="Filter">
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
       <tr>
