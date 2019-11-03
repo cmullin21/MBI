@@ -1,4 +1,3 @@
-<div class="container">
   <head>
     <!-- Google jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,7 +22,6 @@
   </head>
 
   <!-- Button trigger modal -->
-  <div class="container">
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
@@ -35,7 +33,6 @@
         </button>
       </div>
     </div>
-  </div>
 
   <!-- Modal -->
   <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -198,7 +195,6 @@
   <?=form_input($search);?><input type = submit value='Search' /></p>
   <?=form_close();?>
 <!-- Table -->
-<div class="container">
 <input id="filter" type="text" class="form-control" style="padding-bottom: 10px;" placeholder="Filter">
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
@@ -316,8 +312,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
     <!-- <a href="<?php echo site_url('admin/AdminCOAController/edit');?>/<?php echo $row->accountNumber;?>">Edit</a> -->
 
     <!-- validation plugin configuration -->
@@ -358,5 +352,3 @@
     });
   });
 </script>
-
-</div>

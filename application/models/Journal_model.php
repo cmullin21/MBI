@@ -12,17 +12,37 @@ class Journal_model extends CI_Model {
     return $query->result();
   }
 
-  function createData(){
+  // function createData(){
+  //   $data = array(
+  //     'id' => $this->input->post('id'),
+  //     'accountName' => $this->input->post('accountName'),
+  //     'debitOrCredit' => $this->input->post('debitOrCredit'),
+  //     'amount' => $this->input->post('amount'),
+  //     'status' => $this->input->post('status'),
+  //     'date' => $this->input->post('date'),
+  //     'addedBy' => $this->input->post('addedBy')
+  //   );
+  //   $this->db->insert('jEntries', $data);
+  // }
+
+  function batchInsert($data){
+    $count =  count($data['count']);
+    for($i = 0; $i<$count; $i++){
+      $entries[] = array(
+        'id' => $this->input->post('id'),
+        'accountName' => $data['accountName'][$i],
+        'debitOrCredit' => $data['debitOrCredit'][$i],
+        'amount' => $data['amount'][$i],
+      );
+    }
+    $this->db->insert_batch('jentry', $entries);
+
     $data = array(
-      'accountTitleDebit' => $this->input->post('accountTitleDebit'),
-      'accountTitleCredit' => $this->input->post('accountTitleCredit'),
-      'debit' => $this->input->post('debit'),
-      'credit' => $this->input->post('credit'),
-      'description' => $this->input->post('description'),
-      'status' => $this->input->post('status'),
-      'addedBy' => $this->input->post('addedBy')
+      'id' => $this->input->post('id'),
+      'addedBy' => $this->input->post('addedBy'),
+      'status' => $this->input->post('status')
     );
-    $this->db->insert('journals', $data);
+    $this->db->insert('journal', $data);
   }
 
   function getAllData(){

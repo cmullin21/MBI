@@ -212,7 +212,7 @@ $(document).ready(function(){
         <td class="text-center"><?php echo $row->birthday; ?></td>
         <td class="text-center"><?php echo $row->level; ?></td>
         <td class="text-center"><?php echo $row->active; ?></td>
-        <td class="text-center"><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal2" value="<?php echo $row->id;?>">edit</a></td>
+        <td class="text-center"><a type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#Modal2" value="<?php echo $row->id;?>">Edit</a></td>
         </tr>
         <tr>
         <?php }?>

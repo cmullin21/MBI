@@ -6,7 +6,7 @@ class AdminUserController extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('User_model');
-    $this->load->library('usertracking'); 
+    $this->load->library('usertracking');
     $this->usertracking->track_this();
   }
 
@@ -67,7 +67,7 @@ class AdminUserController extends CI_Controller {
            'level' => $this->input->post('level'),
            'username' => $this->input->post('username'),
            'active' => $this->input->post('active'),
-           'password' => sha1($this->input->post('password'))
+           'password' => md5($this->input->post('password'))
          );
        $this->User_model->updateUser($data);
        //set message to be shown when registration is completed

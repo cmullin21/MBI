@@ -6,7 +6,7 @@ class AdminCOAController extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('COA_model');
-    $this->load->library('usertracking'); 
+    $this->load->library('usertracking');
     $this->usertracking->track_this();
   }
   public function index()
@@ -106,7 +106,8 @@ class AdminCOAController extends CI_Controller {
   }
 }
   // ----- NEW -----
-  public function editAccount(){
+  public function editAccount($accountNumber){
+    $data['row'] = $this->COA_model-> getData($accountNumber);
     // VAlidation details
     // ... will change
     $this->form_validation->set_rules('accountNumber', 'Account number', 'trim|is_unique[users.username]');
