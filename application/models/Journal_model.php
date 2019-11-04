@@ -44,6 +44,21 @@ class Journal_model extends CI_Model {
     $this->db->insert('journal', $data);
   }
 
+  function getAllEntries(){
+    $query = $this->db->query('SELECT * FROM jentry');
+    return $query->result();
+  }
+
+  function getAllJournals(){
+    $query = $this->db->query('SELECT * FROM journal');
+    return $query->result();
+  }
+
+  function mergeTables(){
+    $query = $this->db->query('SELECT * FROM journal JOIN jentry ON dateTime = date');
+    return $query->result();
+  }
+
   function getAllData(){
     $query = $this->db->query('SELECT * FROM journals');
     return $query->result();

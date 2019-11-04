@@ -110,13 +110,17 @@
         </tr>
       </thead>
       <tbody>
-        <td><?php echo $row->lastname; ?></td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
+        <?php foreach($jentry as $row) {?>
+          <tr>
+            <td><?php echo $row->date; ?></td>
+            <td><?php echo $row->accountName; ?></td>
+            <td><?php echo $row->id; ?></td>
+            <td><?php echo $row->amount; ?></td>
+            <td><?php echo $row->amount; ?></td>
+            <td><?php echo $row->status; ?></td>
+            <td><?php echo $row->addedBy; ?></td>
+          </tr>
+      <?php }?>
       </tbody>
   </div>
   </table>

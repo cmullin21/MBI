@@ -10,7 +10,7 @@ class AccountantJournalController extends CI_Controller {
   }
 	public function index()
 	{
-    $data['result'] = $this->Journal_model->getAllData();
+    $data['jentry'] = $this->Journal_model->mergeTables();
     $data['accounts'] = $this->Journal_model->getAllAccounts();
     $this->load->view('headers/accountantHeader');
 		$this->load->view('accountant/accountantJournal', $data);
