@@ -24,17 +24,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo site_url('manager/ManagerJournalController/create')?>">
+        <form method="post" action="<?php echo site_url('manager/ManagerJournalController/createData')?>">
           <div class="container">
             <div class="form-group">
-              <form name="add_name" method="POST" action="/add-more-post">
+              <form name="add_name" method="POST" action="<?php echo site_url('manager/ManagerJournalController')?>">
                 <div class="row">
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="addedBy">Journal Number</label>
-                      <input type="text" class="form-control" name="addedBy" readonly value="1">
-                    </div>
-                  </div>
+                  <input type="hidden" value="6437" name="count[]">
+                  <input type="hidden" class="form-control" name="id" readonly value="test">
                   <div class="col-4">
                     <div class="form-group">
                       <label for="addedBy">Added By</label>
@@ -50,7 +46,7 @@
                     </th>
                     <tr>
                       <td>
-                        <select class="form-control" name="accountName" required>
+                        <select class="form-control" name="accountName[]" required>
                           <option>Please Select an Account</option>
                           <?php
                           foreach($accounts as $row){
@@ -58,11 +54,13 @@
                           }
                           ?>
                         </td>
-                        <td><select class="form-control" name="accountCategory" required>
+                        <td><select class="form-control" name="debitOrCredit[]" required>
                           <option>Debit</option>
                           <option>Credit</option>
                         </select></td>
-                        <td><input type="number" name="addmore[][balance]" placeholder="Balance" class="form-control name_list" required="" /></td>
+                        <td>
+                          <input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required="" />
+                        </td>
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                       </tr>
                     </table>
@@ -74,9 +72,17 @@
                           <input type="text" class="form-control" name="description" placeholder="Enter Description">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" name="addedBy" readonly value="Pending">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="status">Status</label>
+                          <input type="text" class="form-control" name="status" readonly value="Pending">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="files">Files</label>
+                          <input type="file" class="form-control" name="file">
+                        </div>
                       </div>
                     </div>
                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" />
@@ -89,68 +95,47 @@
       </div>
     </div>
 
-
 <!-- Table -->
   <div class="container">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
           <th class="text-center" scope="col">Date</th>
           <th class="text-center" scope="col">Account Title</th>
+          <th class="text-center" scope="col">Debit or Credit</th>
           <th class="text-center" scope="col">PR</th>
-          <th class="text-center" scope="col">Debit</th>
-          <th class="text-center" scope="col">Credit</th>
-          <th class="text-center" scope="col">Added By</th>
+          <th class="text-center" scope="col">Amount</th>
           <th class="text-center" scope="col">Status</th>
-          <th class="text-center" scope="col">Action</th>
+          <th class="text-center" scope="col">Added By</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach($result as $row){ ?>
+        <?php foreach($jentry as $row) {?>
           <tr>
-            <td class="text-center"><?php echo $row->date; ?></td>
-            <td><?php echo $row->accountTitleDebit; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('manager/ManagerJournalController/view');?>/<?php echo $row->id;?>">L<?php echo $row->id; ?></td>
-            <td class="text-right">$<?php echo $row->debit; ?>.00</td>
-            <td></td>
-            <td class="text-center"><?php echo $row->addedBy; ?></td>
+            <td><?php echo $row->date; ?></td>
+            <td><?php echo $row->accountName; ?></td>
+            <td><?php echo $row->debitOrCredit; ?></td>
+            <td class="text-center"><a href="<?php echo site_url('accountant/accountantLedgerController')?>">L<?php echo $row->id; ?></a></td>
+            <td class="text-right">$<?php echo number_format($row->amount); ?>.00</td>
             <td class="text-center"><?php echo $row->status; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('manager/ManagerJournalController/edit');?>/<?php echo $row->id;?>"> Edit</a>
+            <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>
-          <tr>
-            <td></td>
-            <td class="text-center"><?php echo $row->accountTitleCredit; ?></td>
-            <td></td>
-            <td></td>
-            <td class="text-right">$<?php echo $row->credit; ?>.00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td colspan="8"><?php echo $row->description; ?></td>
-          </tr>
-          <tr>
-            <td colspan="8"><strong><?php echo $row->statusDesc; ?></strong></td>
-          </tr>
-          <tr>
-            <td colspan="8"></td>
-          </tr>
-
-        <?php }?>
+      <?php }?>
       </tbody>
   </div>
   </table>
-
 
   <script type="text/javascript">
       $(document).ready(function(){
         var i=1;
         $('#add').click(function(){
+          var maxAllowed = 8;
+          if(i<maxAllowed){
              i++;
-             $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><select class="form-control" name="accountName" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><select class="form-control" name="debitOrCredit" required><option>Debit</option><option>Credit</option></td><td><input type="number" name="addmore[][balance]" placeholder="Balance" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
+             $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="count[]"><td><select class="form-control" name="accountName[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><select class="form-control" name="debitOrCredit[]" required><option>Debit</option><option>Credit</option></td><td><input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        }});
         $(document).on('click', '.btn_remove', function(){
+          i--;
              var button_id = $(this).attr("id");
              $('#row'+button_id+'').remove();
         });
