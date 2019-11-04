@@ -29,16 +29,15 @@ class Journal_model extends CI_Model {
     $count =  count($data['count']);
     for($i = 0; $i<$count; $i++){
       $entries[] = array(
-        'id' => $this->input->post('id'),
         'accountName' => $data['accountName'][$i],
         'debitOrCredit' => $data['debitOrCredit'][$i],
         'amount' => $data['amount'][$i],
+        'date' => $this->input->post('date')
       );
     }
     $this->db->insert_batch('jentry', $entries);
 
     $data = array(
-      'id' => $this->input->post('id'),
       'addedBy' => $this->input->post('addedBy'),
       'status' => $this->input->post('status')
     );

@@ -6,7 +6,7 @@
       <h3 class="text-center">Journal</h3>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl" action=>New Entry</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">New Entry</button>
     </div>
   </div>
 </div>
@@ -30,12 +30,7 @@
               <form name="add_name" method="POST" action="<?php echo site_url('accountant/AccountantJournalController')?>">
                 <div class="row">
                   <input type="hidden" value="6437" name="count[]">
-                  <!-- <div class="col-4">
-                    <div class="form-group">
-                      <label for="id">Journal Number</label>
-                      <input type="text" class="form-control" name="id" readonly value="test">
-                    </div>
-                  </div> -->
+                  <input type="hidden" class="form-control" name="id" readonly value="test">
                   <div class="col-4">
                     <div class="form-group">
                       <label for="addedBy">Added By</label>
@@ -115,7 +110,7 @@
         </tr>
       </thead>
       <tbody>
-        <td>Test</td>
+        <td><?php echo $row->lastname; ?></td>
         <td>Test</td>
         <td>Test</td>
         <td>Test</td>
