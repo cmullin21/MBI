@@ -1,5 +1,3 @@
-
-<div class="container">
   <!-- Google jQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -182,11 +180,6 @@ $(document).ready(function(){
 
 <br>
 
-
-
-
-
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -321,6 +314,3 @@ $(document).ready(function(){
       });
     });
     </script>
-
-
-  </div>

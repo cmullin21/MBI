@@ -235,7 +235,7 @@
           <td class="text-center"><?php echo $row->accountOrder; ?></td>
           <td class="text-center"><?php echo $row->statement; ?></td>
           <td class="text-center"><?php echo $row->comment; ?></td>
-          <td class="text-center"><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">edit</a></tr>
+          <td class="text-center"><a type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#Modal1">Edit</a></tr>
           <?php }?>
         </tbody>
       </table>
