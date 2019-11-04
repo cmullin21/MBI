@@ -186,14 +186,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Validation JS file -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-
-
 <br>
-	<!--NEW Search Box with 'Search' Button-->
-	<?=form_open('admin/AdminCOAController');?>
-  <?php $search = array('accountName'=>'search','accountNumber'=>'search');?>
-  <?=form_input($search);?><input type = submit value='Search' /></p>
-  <?=form_close();?>
+
 <!-- Table -->
 <input id="filter" type="text" class="form-control" style="padding-bottom: 10px;" placeholder="Filter">
   <table class="table table-striped table-bordered">
