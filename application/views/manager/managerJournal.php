@@ -59,7 +59,7 @@
                           <option>Credit</option>
                         </select></td>
                         <td>
-                          <input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required="" />
+                          <input type="number" name="amount[]" step=".01" placeholder="Amount" class="form-control name_list" required="" />
                         </td>
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                       </tr>
@@ -116,7 +116,7 @@
             <td><?php echo $row->accountName; ?></td>
             <td><?php echo $row->debitOrCredit; ?></td>
             <td class="text-center"><a href="<?php echo site_url('accountant/accountantLedgerController')?>">L<?php echo $row->id; ?></a></td>
-            <td class="text-right">$<?php echo number_format($row->amount); ?>.00</td>
+            <td class="text-right">$<?php echo number_format($row->amounts, 2); ?></td>
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>
@@ -132,7 +132,7 @@
           var maxAllowed = 8;
           if(i<maxAllowed){
              i++;
-             $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="count[]"><td><select class="form-control" name="accountName[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><select class="form-control" name="debitOrCredit[]" required><option>Debit</option><option>Credit</option></td><td><input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+             $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="count[]"><td><select class="form-control" name="accountName[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><select class="form-control" name="debitOrCredit[]" required><option>Debit</option><option>Credit</option></td><td><input type="number" name="amount[]" step=".01" placeholder="Amount" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
         }});
         $(document).on('click', '.btn_remove', function(){
           i--;

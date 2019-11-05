@@ -116,7 +116,7 @@
             <td><?php echo $row->accountName; ?></td>
             <td><?php echo $row->debitOrCredit; ?></td>
             <td class="text-center"><a href="<?php echo site_url('accountant/accountantLedgerController')?>">L<?php echo $row->id; ?></a></td>
-            <td class="text-right">$<?php echo number_format($row->amount); ?>.00</td>
+            <td class="text-right">$<?php echo number_format($row->amount, 2); ?></td>
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>

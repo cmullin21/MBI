@@ -31,7 +31,7 @@ class Journal_model extends CI_Model {
       $entries[] = array(
         'accountName' => $data['accountName'][$i],
         'debitOrCredit' => $data['debitOrCredit'][$i],
-        'amount' => $data['amount'][$i],
+        'amounts' => $data['amount'][$i],
         'date' => $this->input->post('date')
       );
     }
