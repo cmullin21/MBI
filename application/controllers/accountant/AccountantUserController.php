@@ -6,8 +6,7 @@ class AccountantUserController extends CI_Controller {
   public function __construct(){
     parent::__construct();
     $this->load->model('User_model');
-    $this->load->library('usertracking'); 
-    $this->usertracking->track_this();
+    
   }
 	public function index()
 	{

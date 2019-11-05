@@ -7,8 +7,7 @@ class Manager extends CI_Controller {
         if($this->session->userdata('logged_in') !== TRUE){
             redirect('Login');
         }
-        $this->load->library('usertracking'); 
-        $this->usertracking->track_this();
+       
     }
 
     function index(){
