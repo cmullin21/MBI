@@ -39,10 +39,10 @@
         <td class="text-center"><?php echo $row->normalSide; ?></td>
         <td class="text-center"><?php echo $row->accountCategory; ?></td>
         <td class="text-center"><?php echo $row->accountSubcategory; ?></td>
-        <td class="text-right">$<?php echo $row->initialBalance; ?>.00</td>
-        <td class="text-right">$<?php echo $row->debit; ?>.00</td>
-        <td class="text-right">$<?php echo $row->credit; ?>.00</td>
-        <td class="text-right">$<?php echo $row->balance; ?>.00</td>
+        <td class="text-right">$<?php echo number_format($row->initialBalance, 2); ?></td>
+        <td class="text-right">$<?php echo number_format($row->debit, 2); ?></td>
+        <td class="text-right">$<?php echo number_format($row->credit, 2); ?></td>
+        <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
         <td class="text-center"><?php echo $row->dateTimeAdded; ?></td>
         <td class="text-center"><?php echo $row->addedBy; ?></td>
         <td class="text-center">0<?php echo $row->accountOrder; ?></td>

@@ -22,6 +22,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
           <span class="navbar-toggler-icon"></span>
       </button>
+			<button type="button" class="btn btn-primary" onclick="history.go(-1);" > < </button>
       <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
           <ul class="navbar-nav w-100 justify-content-center">
               <li class="nav-item">
@@ -31,8 +32,7 @@
                   <a class="nav-link" href="<?php echo site_url('accountant/AccountantCOAController/');?>">Accounts</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url('accountant/AccountantJournalController/');?>">Ledger</a>
-              </li>
+                  <a class="nav-link" href="<?php echo site_url('accountant/AccountantJournalController/');?>">Journal</a>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Reports
@@ -40,7 +40,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Balance Sheet</a>
                   <a class="dropdown-item" href="#">Income Statement</a>
-                  <a class="dropdown-item" href="#">Retained Earning Statement</a>
+                  <a class="dropdown-item" href="#">Statement of Retained Earning</a>
                   <a class="dropdown-item" href="#">Trial Balance</a>
                 </div>
               </li>

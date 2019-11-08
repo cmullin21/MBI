@@ -22,6 +22,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
           <span class="navbar-toggler-icon"></span>
       </button>
+			<button type="button" class="btn btn-primary" onclick="history.go(-1);" > < </button>
       <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
           <ul class="navbar-nav w-100 justify-content-center">
               <li class="nav-item">
@@ -42,12 +43,12 @@
                 </div>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Event Logs</a>
+                  <a class="nav-link" href="<?php echo site_url('admin/AdminEventLogController/');?>">Event Logs</a>
               </li>
           </ul>
           <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
             <li class="nav-item">
-              <a class="nav-link"><?php echo ucwords($_SESSION["username"])?></a>
+              <a class="nav-link"><?php echo ucwords("Admin")?></a>
             </li>
               <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('Login/logout');?>">Logout</a>

@@ -1,4 +1,3 @@
-<div class="container">
   <div class="container">
     <h3 class="text-center">Users</h3>
   </div>
@@ -32,4 +31,3 @@
           <?php }?>
         </tbody>
       </table>
-    </div>

@@ -71,26 +71,4 @@ class COA_model extends CI_Model {
     $this->db->update('chartsofaccounts', $data);
   }
 
-	//NEW 
-  function get_search() {
-    $match = $this->input->post('search');
-    {
-    $this->db->like('accountName',$match);
-    $this->db->or_like('accountDescription',$match);
-    $this->db->or_like('normalSide',$match);
-    $this->db->or_like('accountCateogry',$match);
-    $this->db->or_like('accountSubcategory',$match);
-    $this->db->or_like('initialBalance',$match);
-    $this->db->or_like('debit',$match);
-    $this->db->or_like('credit',$match);
-    $this->db->or_like('balance',$match);
-    $this->db->or_like('dateTimteAdded',$match);
-    $this->db->or_like('addedBy',$match);
-    $this->db->or_like('accountOrder',$match);
-    $this->db->or_like('statement',$match);
-    $this->db->or_like('comment',$match);
-    $result = $this->db->get('chartsofaccounts');
-    return $query->result();
-    }
-  }
 }

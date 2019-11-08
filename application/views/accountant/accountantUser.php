@@ -1,5 +1,4 @@
-<div class="container">
-  <h3 class="text-center">Users</h3>
+<h3 class="text-center">Users</h3>
     <br>
       <table class="table">
         <thead class="thead-dark">
@@ -28,4 +27,3 @@
           <?php }?>
         </tbody>
       </table>
-    </div>
