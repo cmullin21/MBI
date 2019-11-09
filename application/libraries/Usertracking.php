@@ -32,11 +32,8 @@ class Usertracking
   private $needed_fields = array(array('name' => 'id', 'type' => 'int', 'primary_key' => 1, 'forge_type' => 'int', 'forge_auto_increment' => TRUE),
 														array('name' => 'session_id', 'type' => 'string', 'forge_type' => 'varchar', 'forge_constraint' => '100'),
 														array('name' => 'user_identifier', 'type' => 'string', 'forge_type' => 'varchar', 'forge_constraint' => '255'),
-														array('name' => 'request_uri', 'type' => 'string', 'forge_type' => 'text'),
-														array('name' => 'timestamp', 'type' => 'string', 'forge_type' => 'varchar', 'forge_constraint' => '20'),
-														array('name' => 'client_ip', 'type' => 'string', 'forge_type' => 'varchar', 'forge_constraint' => '50'),
-														array('name' => 'client_user_agent', 'type' => 'string', 'forge_type' => 'text'),
-														array('name' => 'referer_page', 'type' => 'string', 'forge_type' => 'text'));
+														array('name' => 'message', 'type' => 'string', 'forge_type' => 'text'),
+														array('name' => 'timestamp', 'type' => 'string', 'forge_type' => 'varchar', 'forge_constraint' => '20'));
 
   /**
    * Constructor
@@ -151,39 +148,39 @@ class Usertracking
     //get the data
     $input_data = array();
     //$input_data['session_id'] = $this->CI->session->userdata('session_id');
-    $input_data['request_uri'] = $this->CI->input->server('REQUEST_URI');
+    // $input_data['message'] = $this->CI->input->server('REQUEST_URI');
     date_default_timezone_set("America/New_York");
     $input_data['timestamp'] = date("h:i:sa");
-    $input_data['client_ip'] = $this->CI->input->server('REMOTE_ADDR');
-    $input_data['client_user_agent'] = $this->CI->agent->agent_string();
-    $input_data['referer_page'] = $this->CI->agent->referrer();
+    // $input_data['client_ip'] = $this->CI->input->server('REMOTE_ADDR');
+    // $input_data['client_user_agent'] = $this->CI->agent->agent_string();
+    // $input_data['referer_page'] = $this->CI->agent->referrer();
 
     //Get the user identifier, if set
-    if ($this->configuration['user_identifier'] !== null && is_array($this->configuration['user_identifier']))
-    {
-      if (count($this->configuration['user_identifier']) == 3)
-      {
-        list($class_type, $class_name, $function_name) = $this->configuration['user_identifier'];
-        $the_args = array();
-      }
-      elseif (count($this->configuration['user_identifier']) == 4)
-        list($class_type, $class_name, $function_name, $the_args) = $this->configuration['user_identifier'];
+    // if ($this->configuration['user_identifier'] !== null && is_array($this->configuration['user_identifier']))
+    // {
+    //   if (count($this->configuration['user_identifier']) == 3)
+    //   {
+    //     list($class_type, $class_name, $function_name) = $this->configuration['user_identifier'];
+    //     $the_args = array();
+    //   }
+    //   elseif (count($this->configuration['user_identifier']) == 4)
+    //     list($class_type, $class_name, $function_name, $the_args) = $this->configuration['user_identifier'];
 
-      if ( ! $this->CI->load->$class_type($class_name))
-      {
-        if ((($class_type !== 'helper') && !method_exists($this->CI->$class_name, $function_name)) OR ($class_type == 'helper' && !function_exists($function_name)))
-          display_error("Could not load the $function_name in $class_name.  Check the userIdentifier configuration in userTracking config. User Identifier will not be tracked.");
-        else //Do it!
-        {
-          if ($class_type == 'helper')
-            $input_data['user_identifier'] = call_user_func_array($function_name, $the_args);
-          else
-            $input_data['user_identifier'] = call_user_func_array(array($this->CI->$class_name, $function_name), $the_args);
-        }
-      }
-      else
-        display_error("Could not load the $class_type: $class_name.  Check the userIdentifier configuration in userTracking config. User Identifier will not be tracked.");
-    }
+    //   if ( ! $this->CI->load->$class_type($class_name))
+    //   {
+    //     if ((($class_type !== 'helper') && !method_exists($this->CI->$class_name, $function_name)) OR ($class_type == 'helper' && !function_exists($function_name)))
+    //       display_error("Could not load the $function_name in $class_name.  Check the userIdentifier configuration in userTracking config. User Identifier will not be tracked.");
+    //     else //Do it!
+    //     {
+    //       if ($class_type == 'helper')
+    //         $input_data['user_identifier'] = call_user_func_array($function_name, $the_args);
+    //       else
+    //         $input_data['user_identifier'] = call_user_func_array(array($this->CI->$class_name, $function_name), $the_args);
+    //     }
+    //   }
+    //   else
+    //     display_error("Could not load the $class_type: $class_name.  Check the userIdentifier configuration in userTracking config. User Identifier will not be tracked.");
+    // }
 
     //Add it to the database
     $this->CI->load->database();
