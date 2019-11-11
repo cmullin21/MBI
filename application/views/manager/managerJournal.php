@@ -13,7 +13,7 @@
 
 <br>
 
-<!-- Modal -->
+<!-- Modal for New Journal -->
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -35,6 +35,17 @@
                     <div class="form-group">
                       <label for="addedBy">Added By</label>
                       <input type="text" class="form-control" name="addedBy" readonly value="<?php echo ucwords($_SESSION["username"])?>">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <td>
+                        <label for="typeOfJournal">Journal Type</label>
+                        <select class="form-control" name="typeOfJournal" required>
+                          <option>Normal</option>
+                          <option>Adjusting</option>
+                        </select>
+                      </td>
                     </div>
                   </div>
                 </div>
@@ -75,7 +86,11 @@
                       <div class="col-4">
                         <div class="form-group">
                           <label for="status">Status</label>
-                          <input type="text" class="form-control" name="status" readonly value="Pending">
+                          <select class="form-control" name="status" required>
+                            <option>Approved</option>
+                            <option>Pending</option>
+                            <option>Reject</option>
+                          </select>
                         </div>
                       </div>
                       <div class="col-4">
@@ -95,6 +110,7 @@
       </div>
     </div>
 
+
 <!-- Table -->
   <div class="container">
     <table class="table table-bordered table-hover">
@@ -103,22 +119,22 @@
           <th class="text-center" scope="col">Date</th>
           <th class="text-center" scope="col">Account Title</th>
           <th class="text-center" scope="col">Debit or Credit</th>
-          <th class="text-center" scope="col">PR</th>
           <th class="text-center" scope="col">Amount</th>
           <th class="text-center" scope="col">Status</th>
           <th class="text-center" scope="col">Added By</th>
+          <th class="text-center" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach($jentry as $row) {?>
           <tr>
             <td><?php echo $row->date; ?></td>
-            <td><?php echo $row->accountName; ?></td>
+            <td><a href="<?php echo site_url('manager/ManagerLedgerController/ledgerView')?>/<?php echo $row->accountName; ?>"><?php echo $row->accountName; ?></a></td>
             <td><?php echo $row->debitOrCredit; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('accountant/accountantLedgerController')?>">L<?php echo $row->id; ?></a></td>
             <td class="text-right">$<?php echo number_format($row->amounts, 2); ?></td>
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
+            <td class="text-center "><a href="<?php echo site_url('manager/ManagerJournalController/edit');?>/<?php echo $row->id;?>">Review</a></td>
           </tr>
       <?php }?>
       </tbody>

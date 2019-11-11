@@ -12,25 +12,11 @@ class Journal_model extends CI_Model {
     return $query->result();
   }
 
-  // function createData(){
-  //   $data = array(
-  //     'id' => $this->input->post('id'),
-  //     'accountName' => $this->input->post('accountName'),
-  //     'debitOrCredit' => $this->input->post('debitOrCredit'),
-  //     'amount' => $this->input->post('amount'),
-  //     'status' => $this->input->post('status'),
-  //     'date' => $this->input->post('date'),
-  //     'addedBy' => $this->input->post('addedBy')
-  //   );
-  //   $this->db->insert('jEntries', $data);
-  // }
-
   function batchInsert($data){
     $count =  count($data['count']);
 
     $debitFound = FALSE;
     $creditFound = FALSE;
-
     for($i = 0; $i<$count; $i++){
 
       if ($data['debitOrCredit'][$i] == "Debit") {
@@ -49,12 +35,14 @@ class Journal_model extends CI_Model {
 
     if ($debitFound == FALSE || $creditFound == FALSE){
       echo "<script type='text/javascript'>alert('At least one debit and credit entry are required');</script>";
-    } else {
+    } 
+    else {
       $this->db->insert_batch('jentry', $entries);
   
       $data = array(
         'addedBy' => $this->input->post('addedBy'),
-        'status' => $this->input->post('status')
+        'status' => $this->input->post('status'),
+        'typeOfJournal' => $this->input->post('typeOfJournal')
       );
       $this->db->insert('journal', $data);
     }
@@ -80,17 +68,17 @@ class Journal_model extends CI_Model {
     return $query->result();
   }
 
-  function getData($ID) {
-    $query = $this->db->query('SELECT * FROM journals WHERE `id` =' .$ID);
+  function getData($id) {
+    $query = $this->db->query('SELECT * FROM journals WHERE `id` =' .$id);
     return $query->row();
   }
 
-  function updateData($ID) {
+  function updateData($id) {
     $data = array(
       'status' => $this->input->post('status'),
-      'statusDesc' => $this->input->post('statusDesc')
+      'statusDesc' => $this->input->post('statusDesc'),
     );
-    $this->db->where('id', $ID);
+    $this->db->where('id', $id);
     $this->db->update('journals', $data);
   }
 

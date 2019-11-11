@@ -7,8 +7,10 @@ class Ledger_model extends CI_Model {
     $this->load->database();
   }
 
-  function allApprovedJournals(){
-    $query = $this->db->query('SELECT * FROM jentry JOIN journal ON date = dateTime WHERE status = "Approved" && accountName = "Office Equipment"');
-    return $query->result();
+  function allJournalsFrom1Account($accountName){
+    $query = $this->db->query("SELECT * FROM jentry JOIN journal ON date=dateTime WHERE accountName = '".$accountName."'");
+    return $query->row();
+
   }
+
 }

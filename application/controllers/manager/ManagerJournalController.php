@@ -38,10 +38,10 @@ class ManagerJournalController extends CI_Controller {
     redirect("manager/ManagerJournalController");
   }
 
-  public function view($id) {
-    $data['row'] = $this->Journal_model-> getData($id);
-    $this->load->view('headers/managerHeader');
-    $this->load->view('manager/managerJournalView', $data);
-    $this->load->view('footers/footer');
-  }
+  // public function view($id) {
+  //   $data['row'] = $this->Journal_model-> getData($id);
+  //   $this->load->view('headers/managerHeader');
+  //   $this->load->view('manager/managerJournalView', $data);
+  //   $this->load->view('footers/footer');
+  // }
 }

@@ -19,10 +19,12 @@ class AccountantJournalController extends CI_Controller {
 
   public function createData(){
     $result = $this->Journal_model->batchInsert($_POST);
+    $data['accounts'] = $this->Journal_model->getAllAccounts();
     $this->load->view('headers/accountantHeader');
-    $this->load->view('accountant/accountantJournal');
+    $this->load->view('accountant/accountantNewJournal', $data);
     $this->load->view('footers/footer');
-}
+    }
+
 
   public function checkAccounts($id) {
     $data['row'] = $this->Journal_model-> getData($id);
