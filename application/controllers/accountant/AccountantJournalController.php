@@ -19,19 +19,27 @@ class AccountantJournalController extends CI_Controller {
 
   public function createData(){
     $result = $this->Journal_model->batchInsert($_POST);
-    /*
-    // Upload the files then pass data to your model
+   // Upload the files then pass data to your model
     $config['upload_path'] = '.uploads/documents';
     $config['allowed_types'] = 'pdf|docx|txt';
     $this->load->library('upload', $config);
-    if (!$this->upload->do_upload('userfile')){
-      // If the upload fails
-      echo $this->upload->display_errors('<p>', '</p>');
+    $this->form_validation->set_error_delimiters();
+    if ($this->upload->batchInsert()){
+      $data = $this->input->post();
+      $info = $this->upload->data();
+      $file_path = base_url("uploads/".$info['raw_name'].$info['file_ext']);
+      $data['document'] = $file_path;
+      unset($data['submit']);
+      $this->load->model('Journal_model');
+      if($this->queries->insert($data)){
+        echo 'File uploaded sucessfully';
+      } else {
+        echo 'Upload failed';
+      }
+      exit();
     }else{
-      // Pass the full path and post data 
-      $this->Journal_model->batchInsert($this->upload->data('full_path'),$this->input->post());
-      $this->load->view('accountant/accountantJournal');
-    }*/
+      $this->index();
+    }
     $this->load->view('headers/accountantHeader');
     $this->load->view('accountant/accountantJournal');
     $this->load->view('footers/footer');
