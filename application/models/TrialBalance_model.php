@@ -22,6 +22,17 @@ class TrialBalance_model extends CI_Model {
     return $query->result();
   }
 
+  function getEquity(){
+    $query = $this->db->query("SELECT * FROM chartsofaccounts WHERE accountCategory = 'Equity'");
+    return $query->result();
+  }
+
+  function getRevenue(){
+    $query = $this->db->query("SELECT * FROM chartsofaccounts WHERE accountCategory = 'Revenue'");
+    return $query->result();
+  }
+  
+
   function sumDebit(){
     $query = $this->db->query("SELECT SUM(debit) FROM chartsofaccounts WHERE accountCategory = 'Assets, Expenses'");
     return $query->result();

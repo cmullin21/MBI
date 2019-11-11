@@ -14,7 +14,7 @@
             </tr>
         </thead>
     <tbody>
-        <?php foreach($result as $row) {?>
+    <?php foreach($result as $row) {?>
             <tr>
                 <td><?php echo $row->accountName; ?></td>
                 <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
@@ -26,6 +26,20 @@
                 <td><?php echo $row2->accountName; ?></td>
                 <td></td>
                 <td class="text-right">$<?php echo number_format($row2->balance, 2); ?></td>
+            </tr>
+        <?php }?>
+        <?php foreach($equity as $row) {?>
+            <tr>
+                <td><?php echo $row->accountName; ?></td>
+                <td></td>
+                <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
+            </tr>
+        <?php }?>
+        <?php foreach($revenue as $row) {?>
+            <tr>
+                <td><?php echo $row->accountName; ?></td>
+                <td></td>
+                <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
             </tr>
         <?php }?>
         <?php foreach($expenses as $row3) {?>

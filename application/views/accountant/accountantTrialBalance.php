@@ -28,6 +28,20 @@
                 <td class="text-right">$<?php echo number_format($row2->balance, 2); ?></td>
             </tr>
         <?php }?>
+        <?php foreach($equity as $row) {?>
+            <tr>
+                <td><?php echo $row->accountName; ?></td>
+                <td></td>
+                <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
+            </tr>
+        <?php }?>
+        <?php foreach($revenue as $row) {?>
+            <tr>
+                <td><?php echo $row->accountName; ?></td>
+                <td></td>
+                <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
+            </tr>
+        <?php }?>
         <?php foreach($expenses as $row3) {?>
             <tr>
                 <td><?php echo $row3->accountName; ?></td>

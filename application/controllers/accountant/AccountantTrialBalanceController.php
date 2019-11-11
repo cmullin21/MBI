@@ -12,7 +12,9 @@ class AccountantTrialBalanceController extends CI_Controller {
 	{
     $data['result'] = $this->TrialBalance_model->getAssets();
     $data['liability'] = $this->TrialBalance_model->getLiabilities();
+    $data['equity'] = $this->TrialBalance_model->getEquity();
     $data['expenses'] = $this->TrialBalance_model->getExpenses();
+    $data['revenue'] = $this->TrialBalance_model->getRevenue();
     $data['sumDebits'] = $this->TrialBalance_model->sumDebit();
     $this->load->view('headers/accountantHeader');
     $this->load->view('accountant/accountantTrialBalance', $data);
