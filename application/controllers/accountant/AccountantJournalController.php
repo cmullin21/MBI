@@ -20,7 +20,7 @@ class AccountantJournalController extends CI_Controller {
   public function createData(){
     $result = $this->Journal_model->batchInsert($_POST);
    // Upload the files then pass data to your model
-    $config['upload_path'] = '.uploads/documents';
+    $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'pdf|docx|txt';
     $this->load->library('upload', $config);
     $this->form_validation->set_error_delimiters();
