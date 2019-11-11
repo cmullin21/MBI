@@ -79,10 +79,10 @@
                         </div>
                       </div>
                       <div class="col-4">
-                        <div class="form-group">
-                          <label for="files">Files</label>
-                          <input type="file" class="form-control" name="file">
-                        </div>
+                        <?php echo form_open_multipart('accountant/AccountantJournalController/createData');?>
+                      	<?php echo form_upload(['name' => 'userfile', 'value' =>'Save']); ?>
+                        <?php echo form_error('userfile', '<div class="text-danger">', '</div>');?>
+                      	<?php echo form_close();?>
                       </div>
                     </div>
                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" />
