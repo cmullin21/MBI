@@ -8,7 +8,7 @@
     <table class="table">
 
     <tbody>
-        <tr><td class="font-weight-bold">Revenues</td><td><td></tr>
+        <tr><td class="h4 font-weight-bold">Revenues</td><td><td></tr>
         <?php foreach($revenue as $row) {?>
             <tr>
                 <td><?php echo $row->accountName; ?></td>
@@ -16,10 +16,10 @@
                 <td></td>
             </tr>
         <?php }?>
-        <td>Total Revenues</td><td></td><td class="text-right font-weight-bold">$<?php echo number_format($row->balance, 2); ?></td>
+        <td class="font-weight-bold">Total Revenues</td><td></td><td class="text-right font-weight-bold">$<?php echo number_format($row->balance, 2); ?></td>
         
 
-        <tr><td class="font-weight-bold">Expenses</td><td><td></tr>
+        <tr><td class="h4 font-weight-bold">Expenses</td><td><td></tr>
         <?php foreach($expenses as $row) {?>
             <tr>
                 <td><?php echo $row->accountName; ?></td>
@@ -29,7 +29,7 @@
         <?php }?>
         <tr><td class="font-weight-bold">Total Expenses</td><td></td><td class="text-right font-weight-bold">$8,900.00</td></tr>
 
-        <tr><td>Net Income (Loss)</td><td></td><td class="text-right font-weight-bold">$4,525.00</td></tr>
+        <tr><td class="font-weight-bold">Net Income (Loss)</td><td></td><td class="text-right font-weight-bold">$4,525.00</td></tr>
     </tbody>
     </table>
 
