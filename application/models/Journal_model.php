@@ -55,7 +55,7 @@ class Journal_model extends CI_Model {
       $data = array(
         'addedBy' => $this->input->post('addedBy'),
         'status' => $this->input->post('status'),
-				//'document' => $data['document']
+	'document' => $this->input->post('document')
       );
       $this->db->insert('journal', $data);
     }
