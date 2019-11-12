@@ -37,6 +37,17 @@
                       <input type="text" class="form-control" name="addedBy" readonly value="<?php echo ucwords($_SESSION["username"])?>">
                     </div>
                   </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <td>
+                        <label for="typeOfJournal">Journal Type</label>
+                        <select class="form-control" name="typeOfJournal" required>
+                          <option>Normal</option>
+                          <option>Adjusting</option>
+                        </select>
+                      </td>
+                    </div>
+                  </div>
                 </div>
                 <br>
                 <div class="table-responsive">
@@ -45,8 +56,8 @@
                       Entries
                     </th>
                     <tr>
-                      <td>
-                        <select class="form-control" name="accountName[]" required>
+                    <td>
+                        <select class="form-control" id="accSelect" name="accountName[]" required>
                           <option>Please Select an Account</option>
                           <?php
                           foreach($accounts as $row){
@@ -103,20 +114,18 @@
           <th class="text-center" scope="col">Date</th>
           <th class="text-center" scope="col">Account Title</th>
           <th class="text-center" scope="col">Debit or Credit</th>
-          <th class="text-center" scope="col">PR</th>
           <th class="text-center" scope="col">Amount</th>
           <th class="text-center" scope="col">Status</th>
           <th class="text-center" scope="col">Added By</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach($jentry as $row) {?>
+      <?php foreach($jentry as $row) {?>
           <tr>
             <td><?php echo $row->date; ?></td>
-            <td><?php echo $row->accountName; ?></td>
+            <td><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountName; ?>"><?php echo $row->accountName; ?></a></td>
             <td><?php echo $row->debitOrCredit; ?></td>
-            <td class="text-center"><a href="<?php echo site_url('accountant/accountantLedgerController')?>">L<?php echo $row->id; ?></a></td>
-            <td class="text-right">$<?php echo number_format($row->amount, 2); ?></td>
+            <td class="text-right">$<?php echo number_format($row->amounts, 2); ?></td>
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>

@@ -38,10 +38,10 @@
                   Reports
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Balance Sheet</a>
-                  <a class="dropdown-item" href="#">Income Statement</a>
+                  <a class="dropdown-item" href="<?php echo site_url('accountant/AccountantBalanceSheetController/');?>">Balance Sheet</a>
+                  <a class="dropdown-item" href="<?php echo site_url('accountant/AccountantIncomeStatementController/');?>">Income Statement</a>
                   <a class="dropdown-item" href="#">Statement of Retained Earning</a>
-                  <a class="dropdown-item" href="#">Trial Balance</a>
+                  <a class="dropdown-item" href="<?php echo site_url('accountant/AccountantTrialBalanceController/');?>">Trial Balance</a>
                 </div>
               </li>
               <li class="nav-item">

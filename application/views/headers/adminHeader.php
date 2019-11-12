@@ -31,17 +31,6 @@
               <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('admin/AdminCOAController/');?>">Accounts</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Reports
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Balance Sheet</a>
-                  <a class="dropdown-item" href="#">Income Statement</a>
-                  <a class="dropdown-item" href="#">Retained Earning Statement</a>
-                  <a class="dropdown-item" href="#">Trial Balance</a>
-                </div>
-              </li>
               <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('admin/AdminEventLogController/');?>">Event Logs</a>
               </li>
