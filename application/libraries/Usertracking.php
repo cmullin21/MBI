@@ -150,7 +150,7 @@ class Usertracking
     //$input_data['session_id'] = $this->CI->session->userdata('session_id');
     // $input_data['message'] = $this->CI->input->server('REQUEST_URI');
     date_default_timezone_set("America/New_York");
-    $input_data['timestamp'] = date("h:i:sa");
+    $input_data['timestamp'] = date("l, M. j, h:i:sa");
     // $input_data['client_ip'] = $this->CI->input->server('REMOTE_ADDR');
     // $input_data['client_user_agent'] = $this->CI->agent->agent_string();
     // $input_data['referer_page'] = $this->CI->agent->referrer();
