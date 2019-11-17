@@ -33,7 +33,7 @@
       <tbody>
         <?php foreach($result as $row) {?>
         <tr>
-        <th scope="row" class="text-center"><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountName; ?>"><?php echo $row->accountName;  ?></a></th>
+        <th scope="row" class="text-center"><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountNumber; ?>"><?php echo $row->accountName;  ?></a></th>
         <td class="text-center"><?php echo $row->accountNumber; ?></td>
         <td class="text-center"><?php echo $row->accountDescription; ?></td>
         <td class="text-center"><?php echo $row->normalSide; ?></td>
@@ -45,7 +45,7 @@
         <td class="text-right">$<?php echo number_format($row->balance); ?>.00</td>
         <td class="text-center"><?php echo $row->dateTimeAdded; ?></td>
         <td class="text-center"><?php echo $row->addedBy; ?></td>
-        <td class="text-center">0<?php echo $row->accountOrder; ?></td>
+        <td class="text-center"><?php echo $row->accountOrder; ?></td>
         <td class="text-center"><?php echo $row->statement; ?></td>
         <td class="text-center"><?php echo $row->comment; ?></td>
       <tr>

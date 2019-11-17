@@ -86,10 +86,9 @@
 
             <tr>
                 <td></td>
-                <td class="text-right"><ins class="doubleUnderline">$<?php echo number_format(36195, 2); ?></ins></td>
-                <td class="text-right"><ins class="doubleUnderline">$<?php echo number_format(36195, 2); ?></ins></td>
+                    <td class="text-right"><ins class="doubleUnderline">$<?php echo 'test' ; ?></ins></td>
+                    <td class="text-right"><ins class="doubleUnderline">$<?php echo 'test' ; ?></ins></td>
             </tr>
-
             <tr></tr>
 
             <!-- Example of Trial Balance

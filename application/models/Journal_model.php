@@ -13,43 +13,73 @@ class Journal_model extends CI_Model {
   }
 
   function batchInsert($data){
-    $count =  count($data['count']);
+    $countDebit = count($data['countDebit']);
+    for($i = 0; $i<$countDebit; $i++){
+    $debitEntries[] = array(
+      'accountNameDebit' => $data['accountNameDebit'][$i],
+      'amountDebit' => $data['amountDebit'][$i],
+      'dateDebit' => $this->input->post('date')
+    );
+  }
+    $this->db->insert_batch('debitEntries', $debitEntries);
 
-    $debitFound = FALSE;
-    $creditFound = FALSE;
-    for($i = 0; $i<$count; $i++){
+    $countCredit = count($data['countCredit']);
+    for($j = 0; $j < $countCredit; $j++){
+    $creditEntries[] = array(
+      'accountNameCredit' => $data['accountNameCredit'][$j],
+      'amountCredit' => $data['amountCredit'][$j],
+      'dateCredit' => $this->input->post('date')
+    );
+  }
+    $this->db->insert_batch('creditEntries', $creditEntries);
 
-      if ($data['debitOrCredit'][$i] == "Debit") {
-        $debitFound = TRUE;
-      } else if ($data['debitOrCredit'][$i] == "Credit") {
-        $creditFound = TRUE;
-      }
+    $data = array(
+      'addedBy' => $this->input->post('addedBy'),
+      'status' => $this->input->post('status'),
+      'typeOfJournal' => $this->input->post('typeOfJournal')
+    );
+    $this->db->insert('testJournal', $data);
 
-      $entries[] = array(
-        'accountName' => $data['accountName'][$i],
-        'debitOrCredit' => $data['debitOrCredit'][$i],
-        'amounts' => $data['amount'][$i],
-        'date' => $this->input->post('date')
-      );
-    }
-
-    if ($debitFound == FALSE || $creditFound == FALSE){
-      echo "<script type='text/javascript'>alert('At least one debit and credit entry are required');</script>";
-    } 
-    else {
-      $this->db->insert_batch('jentry', $entries);
-  
-      $data = array(
-        'addedBy' => $this->input->post('addedBy'),
-        'status' => $this->input->post('status'),
-        'typeOfJournal' => $this->input->post('typeOfJournal')
-      );
-      $this->db->insert('journal', $data);
-    }
   }
 
+  // function batchInsert($data){
+  //   $count =  count($data['count']);
+
+  //   $debitFound = FALSE;
+  //   $creditFound = FALSE;
+  //   for($i = 0; $i<$count; $i++){
+
+  //     if ($data['debitOrCredit'][$i] == "Debit") {
+  //       $debitFound = TRUE;
+  //     } else if ($data['debitOrCredit'][$i] == "Credit") {
+  //       $creditFound = TRUE;
+  //     }
+
+  //     $entries[] = array(
+  //       'accountName' => $data['accountName'][$i],
+  //       'debitOrCredit' => $data['debitOrCredit'][$i],
+  //       'amounts' => $data['amount'][$i],
+  //       'date' => $this->input->post('date')
+  //     );
+  //   }
+
+  //   if ($debitFound == FALSE || $creditFound == FALSE){
+  //     echo "<script type='text/javascript'>alert('At least one debit and credit entry are required');</script>";
+  //   } 
+  //   else {
+  //     $this->db->insert_batch('jentry', $entries);
+  
+  //     $data = array(
+  //       'addedBy' => $this->input->post('addedBy'),
+  //       'status' => $this->input->post('status'),
+  //       'typeOfJournal' => $this->input->post('typeOfJournal')
+  //     );
+  //     $this->db->insert('journal', $data);
+  //   }
+  // }
+
   function getAllEntries(){
-    $query = $this->db->query('SELECT * FROM jentry');
+    $query = $this->db->query('SELECT * FROM debitEntries JOIN creditEntries ON date = date');
     return $query->result();
   }
 
@@ -59,7 +89,7 @@ class Journal_model extends CI_Model {
   }
 
   function mergeTables(){
-    $query = $this->db->query('SELECT * FROM journal JOIN jentry ON dateTime = date');
+    $query = $this->db->query('SELECT * FROM testJournal JOIN debitEntries ON dateTime = dateDebit JOIN creditEntries ON dateTime = dateCredit');
     return $query->result();
   }
 

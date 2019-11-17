@@ -15,10 +15,9 @@
     <tbody>
     <?php foreach($result as $row) {?>
           <tr>
-            <td><?php echo $row->date; ?></td>
-            <td><?php echo $row->accountName; ?></td>
-            <td><?php echo $row->debitOrCredit; ?></td>
-            <td class="text-right">$<?php echo number_format($row->amounts, 2); ?></td>
+            <td><?php echo $row->dateDebit; ?></td>
+            <td><?php echo $row->accountNameDebit; ?></td>
+            <td class="text-right">$<?php echo number_format($row->amountDebit, 2); ?></td>
             <td><?php echo $row->typeOfJournal; ?></td>
             <td><?php echo $row->addedBy; ?></td>
           </tr>

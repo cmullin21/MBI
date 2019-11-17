@@ -29,7 +29,8 @@
             <div class="form-group">
               <form name="add_name" method="POST" action="<?php echo site_url('accountant/AccountantJournalController')?>">
                 <div class="row">
-                  <input type="hidden" value="6437" name="count[]">
+                  <input type="hidden" value="6437" name="countDebit[]">
+                  <input type="hidden" value="6437" name="countCredit]">
                   <input type="hidden" class="form-control" name="id" readonly value="test">
                   <div class="col-4">
                     <div class="form-group">
@@ -50,14 +51,16 @@
                   </div>
                 </div>
                 <br>
+
+                <!-- Debits -->
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dynamic_field">
+                  <table class="table table-bordered" id="dynamic_Debitfield">
                     <th colspan="4" class="text-center">
-                      Entries
+                      Debits
                     </th>
                     <tr>
                     <td>
-                        <select class="form-control" id="accSelect" name="accountName[]" required>
+                        <select class="form-control" id="accSelect" name="accountNameDebit[]" required>
                           <option>Please Select an Account</option>
                           <?php
                           foreach($accounts as $row){
@@ -65,17 +68,39 @@
                           }
                           ?>
                         </td>
-                        <td><select class="form-control" name="debitOrCredit[]" required>
-                          <option>Debit</option>
-                          <option>Credit</option>
-                        </select></td>
                         <td>
-                          <input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required="" />
+                          <input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list debitAmount" required="" />
                         </td>
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                        <td><button type="button" name="addDebit" id="addDebit" class="btn btn-success">+</button></td>
                       </tr>
                     </table>
+
+                     <!-- Credits -->
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dynamic_Creditfield">
+                      <th colspan="4" class="text-center">
+                        Credits
+                      </th>
+                      <tr>
+                      <td>
+                          <select class="form-control" id="accSelect" name="accountNameCredit[]" required>
+                            <option>Please Select an Account</option>
+                            <?php
+                            foreach($accounts as $row){
+                              echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';
+                            }
+                            ?>
+                          </td>
+                          <td>
+                            <input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list creditAmount" required="" />
+                          </td>
+                          <td><button type="button" name="addCredit" id="addCredit" class="btn btn-success">+</button></td>
+                        </tr>
+                    </table>
+
                     <br>
+
+                    <!-- Descrioption and Status -->
                     <div class="row">
                       <div class="col-8">
                         <div class="form-group">
@@ -95,7 +120,15 @@
                           <input type="file" class="form-control" name="file">
                         </div>
                       </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                            <label for="debitSum">Debit</label>
+                          <div>Sum: <span id="debitSum"></span></div>
+                        </div>
+                      </div>
                     </div>
+
+                    <!-- Submit Button -->
                     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" />
                   </div>
                 </div>
@@ -105,6 +138,7 @@
         </div>
       </div>
     </div>
+    </div>
 
 <!-- Table -->
   <div class="container">
@@ -113,7 +147,6 @@
         <tr>
           <th class="text-center" scope="col">Date</th>
           <th class="text-center" scope="col">Account Title</th>
-          <th class="text-center" scope="col">Debit or Credit</th>
           <th class="text-center" scope="col">Amount</th>
           <th class="text-center" scope="col">Status</th>
           <th class="text-center" scope="col">Added By</th>
@@ -122,10 +155,9 @@
       <tbody>
       <?php foreach($jentry as $row) {?>
           <tr>
-            <td><?php echo $row->date; ?></td>
-            <td><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountName; ?>"><?php echo $row->accountName; ?></a></td>
-            <td><?php echo $row->debitOrCredit; ?></td>
-            <td class="text-right">$<?php echo number_format($row->amounts, 2); ?></td>
+            <td><?php echo $row->dateTime; ?></td>
+            <td><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountNameDebit; ?>"><?php echo $row->accountNameDebit; ?></a></td>
+            <td class="text-right">$<?php echo number_format($row->amountDebit, 2); ?></td>
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>
@@ -135,18 +167,54 @@
   </table>
 
   <script type="text/javascript">
+    //  Add more Debits
       $(document).ready(function(){
         var i=1;
-        $('#add').click(function(){
-          var maxAllowed = 8;
-          if(i<maxAllowed){
+        $('#addDebit').click(function(){
+          var maxDebit = 10;
+          if(i<maxDebit){
              i++;
-             $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="count[]"><td><select class="form-control" name="accountName[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><select class="form-control" name="debitOrCredit[]" required><option>Debit</option><option>Credit</option></td><td><input type="number" name="amount[]" placeholder="Amount" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+             $('#dynamic_Debitfield').append('<tr id="rowDebit'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="countDebit[]"><td><select class="form-control" name="accountNameDebit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list debitAmount" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_removeDebit">X</button></td></tr>');
         }});
-        $(document).on('click', '.btn_remove', function(){
+
+        $(document).on('click', '.btn_removeDebit', function(){
           i--;
              var button_id = $(this).attr("id");
-             $('#row'+button_id+'').remove();
+             $('#rowDebit'+button_id+'').remove();
         });
       });
+
+      // Add more Credits
+      $(document).ready(function(){
+        var j=1;
+        $('#addCredit').click(function(){
+          var maxCredit = 10;
+          if(j<maxCredit){
+             j++;
+             $('#dynamic_Creditfield').append('<tr id="rowCredit'+j+'" class="dynamic-added"><input type="hidden" value="6437" name="countCredit[]"><td><select class="form-control" name="accountNameCredit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list creditAmount" required /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_removeCredit">X</button></td></tr>');
+        }});
+
+        $(document).on('click', '.btn_removeCredit', function(){
+          j--;
+             var button_id = $(this).attr("id");
+             $('#rowCredit'+button_id+'').remove();
+        });
+      });
+
+      // Sum of debits
+      function debitSum(){
+        var debitSum = 0;
+        $(".debitAmount").each(function(){
+          if(!isNaN(this.value) && this.value.length != 0){
+            debitSum += parseFloat(this.value);
+          }
+        });
+        $(#debitSum).html(debitSum.toFixed(2));
+      }
+
+      $("table").on("keyup", ".debitAmount", function(){
+        debitSum();
+      });
+
+
   </script>

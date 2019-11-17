@@ -8,7 +8,7 @@ class TrialBalance_model extends CI_Model {
   }
 
   function getAssets(){
-    $query = $this->db->query("SELECT * FROM chartsofaccounts WHERE accountCategory = 'Assets'");
+    $query = $this->db->query("SELECT * FROM chartsofaccounts WHERE accountCategory = 'Assets' ORDER BY accountNumber");
     return $query->result();
   }
 
@@ -35,6 +35,11 @@ class TrialBalance_model extends CI_Model {
 
   function sumDebit(){
     $query = $this->db->query("SELECT SUM(debit) FROM chartsofaccounts WHERE accountCategory = 'Assets, Expenses'");
+    return $query->result();
+  }
+
+  function sumCredit(){
+    $query = $this->db->query("SELECT SUM(credit) FROM chartsofaccounts WHERE accountCategory = 'Liability, Equity'");
     return $query->result();
   }
 }

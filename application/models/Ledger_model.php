@@ -8,7 +8,7 @@ class Ledger_model extends CI_Model {
   }
 
   function allJournalsFrom1Account($accountName){
-    $query = $this->db->query("SELECT * FROM jentry JOIN journal ON date=dateTime WHERE accountName = '".$accountName."'");
+    $query = $this->db->query("SELECT * FROM debitEntries JOIN testJournal ON dateDebit=dateTime WHERE accountNameDebit = '".$accountName."'");
     return $query->row();
   }
 
