@@ -11,9 +11,10 @@ class ManagerJournalController extends CI_Controller {
   }
 	public function index()
 	{
-    $data['jentry'] = $this->Journal_model->mergeTables();
+    $data['jDates'] = $this->Journal_model->getJournalDates();
+    $data['jDebits'] = $this->Journal_model->getJournalDebits();
+    $data['jCredits'] = $this->Journal_model->getJournalCredits();
     $data['accounts'] = $this->Journal_model->getAllAccounts();
-    $data['result'] = $this->Journal_model->getAllData();
     $this->load->view('headers/managerHeader');
 		$this->load->view('manager/managerJournal', $data);
     $this->load->view('footers/footer');
@@ -21,10 +22,11 @@ class ManagerJournalController extends CI_Controller {
 
   public function createData(){
     $result = $this->Journal_model->batchInsert($_POST);
+    $data['accounts'] = $this->Journal_model->getAllAccounts();
     $this->load->view('headers/managerHeader');
-    $this->load->view('manager/managerJournal');
+    $this->load->view('manager/managerNewJournal', $data);
     $this->load->view('footers/footer');
-}
+    }
 
   public function edit($id){
     $data['row'] = $this->Journal_model->getData($id);

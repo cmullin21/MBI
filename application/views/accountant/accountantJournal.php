@@ -123,7 +123,6 @@
                       </div>
                       <div class="col-4">
                         <div class="form-group">
-                            <label for="debitSum">Debit</label>
                           <div>Sum: <span id="debitSum"></span></div>
                         </div>
                       </div>
@@ -158,23 +157,32 @@
           <tr>
             <td><?php echo $row->dateTime; ?></td>
             <td><?php foreach($jDebits as $row2){?>
-                <?php echo $row2->accountNameDebit; ?>
+                <?php if($row->dateTime == $row2->dateDebit){?>
+                  <?php echo $row2->accountNameDebit; ?>
                   <br></br>
+                  <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
+                <?php if($row->dateTime == $row3->dateCredit){?>
                 <?php echo "&nbsp &nbsp &nbsp $row3->accountNameCredit" ?>
                 <br></br>
               <?php }?>
+              <?php }?>
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
-                <?php echo $row2->amountDebit; ?>
+              <?php if($row->dateTime == $row2->dateDebit){?>
+                <?php echo $row2->amountDebit;?>
                   <br></br>
                 <?php }?>
+                <?php }?>
               <?php foreach($jCredits as $row3){?>
+                <?php if($row->dateTime == $row3->dateCredit){?>
                 <?php echo $row3->amountCredit; ?>
                 <br></br>
               <?php }?>
-            </td>            <td class="text-center"><?php echo $row->status; ?></td>
+              <?php }?>
+            </td>            
+            <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>
       <?php }?>
@@ -217,4 +225,21 @@
         });
       });
 
+      function calculateDebitSum() {
+        var debitSum = 0;
+        //iterate through each textboxes and add the values
+        $(".debitAmount").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                debitSum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#debitSum").html(sum.toFixed(2));
+    }
+        $("table").on("keyup", ".debitAmount", function () {
+            calculateDebitSum();
+        });
   </script>
