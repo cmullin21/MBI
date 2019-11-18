@@ -31,7 +31,14 @@ class ManagerJournalController extends CI_Controller {
   public function edit($id){
     $data['row'] = $this->Journal_model->getData($id);
     $this->load->view('headers/managerHeader');
-    $this->load->view('manager/managerJournalApproval', $data);
+    $this->load->view('manager/managerJournalApprove', $data) ;
+    $this->load->view('footers/footer');
+  }
+
+  public function editReject($id){
+    $data['row'] = $this->Journal_model->getData($id);
+    $this->load->view('headers/managerHeader');
+    $this->load->view('manager/managerJournalReject', $data) ;
     $this->load->view('footers/footer');
   }
 

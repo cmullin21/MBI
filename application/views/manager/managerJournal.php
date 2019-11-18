@@ -126,12 +126,6 @@
                           <input type="file" class="form-control" name="file">
                         </div>
                       </div>
-                      <div class="col-4">
-                        <div class="form-group">
-                            <label for="debitSum">Debit</label>
-                          <div>Sum: <span id="debitSum"></span></div>
-                        </div>
-                      </div>
                     </div>
 
                     <!-- Submit Button -->
@@ -162,7 +156,7 @@
       <tbody>
       <?php foreach($jDates as $row) {?>
           <tr>
-            <td><?php echo $row->dateTime; ?></td>
+            <td class="text-center"><?php echo $row->dateTime; ?></td>
             <td><?php foreach($jDebits as $row2){?>
                 <?php if($row->dateTime == $row2->dateDebit){?>
                   <?php echo $row2->accountNameDebit; ?>
@@ -178,23 +172,25 @@
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
               <?php if($row->dateTime == $row2->dateDebit){?>
-                <?php echo number_format($row2->amountDebit, 2);?>
+                $<?php echo number_format($row2->amountDebit, 2);?>
                   <br></br>
                 <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                <?php echo number_format($row3->amountCredit, 2); ?>
+                $<?php echo number_format($row3->amountCredit, 2); ?>
                 <br></br>
               <?php }?>
               <?php }?>
             </td>            
-            <td class="text-center"><?php echo $row->status; ?></td>
+            <?php if($row->status == 'Pending'){?>
+              <td class="text-center"><button type="button" class="btn btn-success"><a href="<?php echo site_url('manager/ManagerJournalController/edit');?>/<?php echo $row->id;?>">Approve</a></button> <button type="button" class="btn btn-danger"><a href="<?php echo site_url('manager/ManagerJournalController/editReject');?>/<?php echo $row->id;?>">Reject</a></button></td>
+            <?php } else{?>
+                <td class="text-center"><?php echo $row->status; ?></td>
+              <?php }?>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
             <td class="text-center"><?php echo $row->typeOfJournal; ?></td>
-            <?php if($row->status == 'Pending'){?>
-              <td>Approve | Reject</td>
-            <?php }?>
+
           </tr>
       <?php }?>
       </tbody>

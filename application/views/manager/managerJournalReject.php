@@ -1,11 +1,10 @@
 <body>
   <div class="container">
-  <form method="post" action="<?php echo site_url('admin/AdminCOAController/updateData')?>/<?php echo $row->id ?>">
+  <form method="post" action="<?php echo site_url('manager/ManagerJournalController/update');?>/<?php echo $row->id;?>">
       <div class="form-group">
         <label for="status">Status</label>
         <select class="form-control" name="status" required>
-          <option>Approved</option>
-          <option>Reject</option>
+          <option>Rejected</option>
         </select>
       </div>
       <div class="container">
@@ -18,4 +17,5 @@
         <button type="submit" class="btn btn-primary" value="save">Submit</button>
       </div>
 </form>
+</div>
 

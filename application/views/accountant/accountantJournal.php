@@ -69,7 +69,7 @@
                           ?>
                         </td>
                         <td>
-                          <input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list debitAmount" required="" />
+                          <input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list txt" required="" />
                         </td>
                         <td><button type="button" name="addDebit" id="addDebit" class="btn btn-success">+</button></td>
                       </tr>
@@ -93,7 +93,7 @@
                           </td>
 
                           <td>
-                            <input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list creditAmount" required="" />
+                            <input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list txt" required="" />
                           </td>
                           <td><button type="button" name="addCredit" id="addCredit" class="btn btn-success">+</button></td>
                         </tr>
@@ -119,11 +119,6 @@
                         <div class="form-group">
                           <label for="files">Files</label>
                           <input type="file" class="form-control" name="file">
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="form-group">
-                          <div>Sum: <span id="debitSum"></span></div>
                         </div>
                       </div>
                     </div>
@@ -155,7 +150,7 @@
       <tbody>
       <?php foreach($jDates as $row) {?>
           <tr>
-            <td><?php echo $row->dateTime; ?></td>
+            <td class="text-center"><?php echo $row->dateTime; ?></td>
             <td><?php foreach($jDebits as $row2){?>
                 <?php if($row->dateTime == $row2->dateDebit){?>
                   <?php echo $row2->accountNameDebit; ?>
@@ -171,13 +166,13 @@
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
               <?php if($row->dateTime == $row2->dateDebit){?>
-                <?php echo $row2->amountDebit;?>
+                $<?php echo $row2->amountDebit;?>
                   <br></br>
                 <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                <?php echo $row3->amountCredit; ?>
+                $<?php echo $row3->amountCredit; ?>
                 <br></br>
               <?php }?>
               <?php }?>
@@ -198,7 +193,7 @@
           var maxDebit = 10;
           if(i<maxDebit){
              i++;
-             $('#dynamic_Debitfield').append('<tr id="rowDebit'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="countDebit[]"><td><select class="form-control" name="accountNameDebit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list debitAmount" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_removeDebit">X</button></td></tr>');
+             $('#dynamic_Debitfield').append('<tr id="rowDebit'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="countDebit[]"><td><select class="form-control" name="accountNameDebit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list txt" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_removeDebit">X</button></td></tr>');
         }});
 
         $(document).on('click', '.btn_removeDebit', function(){
@@ -206,6 +201,8 @@
              var button_id = $(this).attr("id");
              $('#rowDebit'+button_id+'').remove();
         });
+
+
       });
 
       // Add more Credits
@@ -215,7 +212,7 @@
           var maxCredit = 10;
           if(j<maxCredit){
              j++;
-             $('#dynamic_Creditfield').append('<tr id="rowCredit'+j+'" class="dynamic-added"><input type="hidden" value="6437" name="countCredit[]"><td><select class="form-control" name="accountNameCredit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list creditAmount" required /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_removeCredit">X</button></td></tr>');
+             $('#dynamic_Creditfield').append('<tr id="rowCredit'+j+'" class="dynamic-added"><input type="hidden" value="6437" name="countCredit[]"><td><select class="form-control" name="accountNameCredit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list txt" required /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_removeCredit">X</button></td></tr>');
         }});
 
         $(document).on('click', '.btn_removeCredit', function(){
@@ -224,22 +221,4 @@
              $('#rowCredit'+button_id+'').remove();
         });
       });
-
-      function calculateDebitSum() {
-        var debitSum = 0;
-        //iterate through each textboxes and add the values
-        $(".debitAmount").each(function () {
-
-            //add only if the value is number
-            if (!isNaN(this.value) && this.value.length != 0) {
-                debitSum += parseFloat(this.value);
-            }
-
-        });
-        //.toFixed() method will roundoff the final sum to 2 decimal places
-        $("#debitSum").html(sum.toFixed(2));
-    }
-        $("table").on("keyup", ".debitAmount", function () {
-            calculateDebitSum();
-        });
   </script>

@@ -72,7 +72,7 @@ class Journal_model extends CI_Model {
   }
 
   function getData($id) {
-    $query = $this->db->query('SELECT * FROM journals WHERE `id` =' .$id);
+    $query = $this->db->query('SELECT * FROM testJournal WHERE `id` =' .$id);
     return $query->row();
   }
 
@@ -82,7 +82,7 @@ class Journal_model extends CI_Model {
       'statusDesc' => $this->input->post('statusDesc'),
     );
     $this->db->where('id', $id);
-    $this->db->update('journals', $data);
+    $this->db->update('testJournal', $data);
   }
 
 }
