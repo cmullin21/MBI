@@ -40,7 +40,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="<?php echo site_url('manager/ManagerBalanceSheetController/');?>">Balance Sheet</a>
                   <a class="dropdown-item" href="<?php echo site_url('manager/ManagerIncomeStatementController/');?>">Income Statement</a>
-                  <a class="dropdown-item" href="#">Statement of Retained Earning</a>
+                  <a class="dropdown-item" href="<?php echo site_url('manager/ManagerREController/');?>">Statement of Retained Earning</a>
                   <a class="dropdown-item" href="<?php echo site_url('manager/ManagerTrialBalanceController/');?>">Trial Balance</a>
                 </div>
               </li>

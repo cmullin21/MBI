@@ -15,9 +15,8 @@ class accountantLedgerController extends CI_Controller {
     $this->load->view('footers/footer');
   }
   
-  public function ledgerView($accountName){
-    $data['result'][] = $this->Ledger_model->allJournalsFrom1Account($accountName);
-    // $data['results'] = $data;
+  public function ledgerView($accountNumber){
+    $data['ledger'][] = $this->Ledger_model->allJournalsFrom1Account($accountNumber);
     $this->load->view('headers/accountantHeader');
 		$this->load->view('accountant/accountantLedger', $data);
     $this->load->view('footers/footer');

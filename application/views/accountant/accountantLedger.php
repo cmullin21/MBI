@@ -13,14 +13,10 @@
       </tr>
     </thead>
     <tbody>
-    <?php foreach($result as $row) {?>
-          <tr>
-            <td><?php echo $row->dateDebit; ?></td>
-            <td><?php echo $row->accountNameDebit; ?></td>
-            <td class="text-right">$<?php echo number_format($row->amountDebit, 2); ?></td>
-            <td><?php echo $row->typeOfJournal; ?></td>
-            <td><?php echo $row->addedBy; ?></td>
-          </tr>
+    <?php foreach($ledger as $row) {?>
+      <td class="text-center"><?php echo $row->dateTime; ?></td>
+      <td class="text-center"><?php echo $row->accountNameDebit; ?></td>
+
     <?php }?>
     </tbody>
 </table>
