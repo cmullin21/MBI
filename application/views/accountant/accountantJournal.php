@@ -30,7 +30,7 @@
               <form name="add_name" method="POST" action="<?php echo site_url('accountant/AccountantJournalController')?>">
                 <div class="row">
                   <input type="hidden" value="6437" name="countDebit[]">
-                  <input type="hidden" value="6437" name="countCredit]">
+                  <input type="hidden" value="6437" name="countCredit[]">
                   <input type="hidden" class="form-control" name="id" readonly value="test">
                   <div class="col-4">
                     <div class="form-group">
@@ -91,6 +91,7 @@
                             }
                             ?>
                           </td>
+
                           <td>
                             <input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list creditAmount" required="" />
                           </td>
@@ -153,12 +154,27 @@
         </tr>
       </thead>
       <tbody>
-      <?php foreach($jentry as $row) {?>
+      <?php foreach($jDates as $row) {?>
           <tr>
             <td><?php echo $row->dateTime; ?></td>
-            <td><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountNameDebit; ?>"><?php echo $row->accountNameDebit; ?></a></td>
-            <td class="text-right">$<?php echo number_format($row->amountDebit, 2); ?></td>
-            <td class="text-center"><?php echo $row->status; ?></td>
+            <td><?php foreach($jDebits as $row2){?>
+                <?php echo $row2->accountNameDebit; ?>
+                  <br></br>
+                <?php }?>
+              <?php foreach($jCredits as $row3){?>
+                <?php echo "&nbsp &nbsp &nbsp $row3->accountNameCredit" ?>
+                <br></br>
+              <?php }?>
+            </td>
+            <td class="text-right"><?php foreach($jDebits as $row2){?>
+                <?php echo $row2->amountDebit; ?>
+                  <br></br>
+                <?php }?>
+              <?php foreach($jCredits as $row3){?>
+                <?php echo $row3->amountCredit; ?>
+                <br></br>
+              <?php }?>
+            </td>            <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
           </tr>
       <?php }?>
@@ -200,21 +216,5 @@
              $('#rowCredit'+button_id+'').remove();
         });
       });
-
-      // Sum of debits
-      function debitSum(){
-        var debitSum = 0;
-        $(".debitAmount").each(function(){
-          if(!isNaN(this.value) && this.value.length != 0){
-            debitSum += parseFloat(this.value);
-          }
-        });
-        $(#debitSum).html(debitSum.toFixed(2));
-      }
-
-      $("table").on("keyup", ".debitAmount", function(){
-        debitSum();
-      });
-
 
   </script>

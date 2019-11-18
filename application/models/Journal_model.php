@@ -39,44 +39,7 @@ class Journal_model extends CI_Model {
       'typeOfJournal' => $this->input->post('typeOfJournal')
     );
     $this->db->insert('testJournal', $data);
-
   }
-
-  // function batchInsert($data){
-  //   $count =  count($data['count']);
-
-  //   $debitFound = FALSE;
-  //   $creditFound = FALSE;
-  //   for($i = 0; $i<$count; $i++){
-
-  //     if ($data['debitOrCredit'][$i] == "Debit") {
-  //       $debitFound = TRUE;
-  //     } else if ($data['debitOrCredit'][$i] == "Credit") {
-  //       $creditFound = TRUE;
-  //     }
-
-  //     $entries[] = array(
-  //       'accountName' => $data['accountName'][$i],
-  //       'debitOrCredit' => $data['debitOrCredit'][$i],
-  //       'amounts' => $data['amount'][$i],
-  //       'date' => $this->input->post('date')
-  //     );
-  //   }
-
-  //   if ($debitFound == FALSE || $creditFound == FALSE){
-  //     echo "<script type='text/javascript'>alert('At least one debit and credit entry are required');</script>";
-  //   } 
-  //   else {
-  //     $this->db->insert_batch('jentry', $entries);
-  
-  //     $data = array(
-  //       'addedBy' => $this->input->post('addedBy'),
-  //       'status' => $this->input->post('status'),
-  //       'typeOfJournal' => $this->input->post('typeOfJournal')
-  //     );
-  //     $this->db->insert('journal', $data);
-  //   }
-  // }
 
   function getAllEntries(){
     $query = $this->db->query('SELECT * FROM debitEntries JOIN creditEntries ON date = date');
@@ -88,8 +51,18 @@ class Journal_model extends CI_Model {
     return $query->result();
   }
 
-  function mergeTables(){
-    $query = $this->db->query('SELECT * FROM testJournal JOIN debitEntries ON dateTime = dateDebit JOIN creditEntries ON dateTime = dateCredit');
+  function getJournalDates(){
+    $query = $this->db->query('SELECT * FROM testJournal');
+    return $query->result();
+  }
+
+  function getJournalDebits(){
+    $query = $this->db->query('SELECT * FROM debitEntries JOIN testJournal ON dateTime = dateDebit');
+    return $query->result();
+  }
+
+  function getJournalCredits(){
+    $query = $this->db->query('SELECT * FROM creditEntries JOIN testJournal ON dateTime = dateCredit');
     return $query->result();
   }
 
