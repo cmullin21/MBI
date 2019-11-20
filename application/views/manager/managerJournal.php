@@ -155,7 +155,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Submit" />
+                    <input type="submit" name="submit" id="submitBtn" class="d-none btn btn-primary" value="Submit" />
                   </div>
                 </div>
               </form>
@@ -220,7 +220,7 @@
               <?php }?>
             </td>            
             </td>            
-            <?php if($row->status == 'Action Needed'){?>
+            <?php if($row->status == 'Action Required'){?>
               <td class="text-center"><button type="button" class="btn btn-success"><a class="text-white"href="<?php echo site_url('manager/ManagerJournalController/edit');?>/<?php echo $row->id;?>">Approve</a></button> <button type="button" class="btn btn-danger"><a class="text-white" href="<?php echo site_url('manager/ManagerJournalController/editReject');?>/<?php echo $row->id;?>">Reject</a></button></td>
             <?php } else{?>
                 <td class="text-center"><?php echo $row->status; ?></td>
@@ -303,7 +303,14 @@
       }
       $("table").on("keyup", ".creditAmount", function () {
         calculateCredit();
+        checkIfEqual();
       });
+
+      function checkIfEqual(){
+        if($("#creditSum" == "#debitSum")){
+          $("#submitBtn").removeClass('d-none');
+        }
+      }
 
   </script>
 

@@ -9,6 +9,8 @@
       opacity: 0.8;
       text-decoration: none;
     }
+
+
   </style>
 </head>
 <div class="container">
@@ -125,7 +127,7 @@
                       <div class="col-4">
                         <div class="form-group">
                           <label for="status">Status</label>
-                          <input type="text" class="form-control" name="status" readonly value="Action Needed">
+                          <input type="text" class="form-control" name="status" readonly value="Action Required">
                         </div>
                       </div>
                       <div class="col-4">
@@ -149,7 +151,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Submit" />
+                    <input type="submit" name="submit" id="submitBtn" class="d-none btn btn-primary" value="Submit" />
                   </div>
                 </div>
               </form>
@@ -190,7 +192,12 @@
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
+                  <a 
+                    class="clickable" 
+                    href="<?php echo site_url('accountant/AccountantLedgerController?accountName='.$row3->accountNameCredit);?>"
+                  >
                 <?php echo "&nbsp &nbsp &nbsp $row3->accountNameCredit" ?>
+                </a>
                 <br></br>
               <?php }?>
               <?php }?>
@@ -289,6 +296,14 @@
       }
       $("table").on("keyup", ".creditAmount", function () {
         calculateCredit();
+        checkIfEqual();
       });
+
+      function checkIfEqual(){
+        if($("#creditSum" == "#debitSum")){
+          $("#submitBtn").removeClass('d-none');
+        }
+      }
+      
 
   </script>
