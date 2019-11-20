@@ -214,7 +214,7 @@
     <tbody>
       <?php foreach($result as $row) {?>
         <tr>
-          <th scope="row" class="text-center"><a href="<?php echo site_url('accountant/AccountantLedgerController/ledgerView')?>/<?php echo $row->accountNumber; ?>"><?php echo $row->accountName;  ?></a></th>
+          <th scope="row" class="text-center"><?php echo $row->accountName;?></th>
           <td class="text-center"><?php echo $row->accountNumber; ?></td>
           <td class="text-center"><?php echo $row->accountDescription; ?></td>
           <td class="text-center"><?php echo $row->normalSide; ?></td>

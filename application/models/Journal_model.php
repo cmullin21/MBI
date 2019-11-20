@@ -42,7 +42,7 @@ class Journal_model extends CI_Model {
   }
 
   function getAllEntries(){
-    $query = $this->db->query('SELECT * FROM debitEntries JOIN creditEntries ON date = date');
+    $query = $this->db->query('SELECT * FROM debitEntries JOIN creditEntries ON date = date ');
     return $query->result();
   }
 
@@ -52,7 +52,7 @@ class Journal_model extends CI_Model {
   }
 
   function getJournalDates(){
-    $query = $this->db->query('SELECT * FROM testJournal');
+    $query = $this->db->query('SELECT * FROM testJournal ORDER BY status');
     return $query->result();
   }
 

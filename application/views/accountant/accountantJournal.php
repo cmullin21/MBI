@@ -1,3 +1,16 @@
+<head>
+  <style>
+    .clickable {
+      text-decoration: none;
+      color: black;
+    }
+
+    .clickable:hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+  </style>
+</head>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -112,7 +125,7 @@
                       <div class="col-4">
                         <div class="form-group">
                           <label for="status">Status</label>
-                          <input type="text" class="form-control" name="status" readonly value="Pending">
+                          <input type="text" class="form-control" name="status" readonly value="Action Needed">
                         </div>
                       </div>
                       <div class="col-4">
@@ -166,7 +179,12 @@
             <td class="text-center"><?php echo $row->dateTime; ?></td>
             <td><?php foreach($jDebits as $row2){?>
                 <?php if($row->dateTime == $row2->dateDebit){?>
+                  <a 
+                    class="clickable" 
+                    href="<?php echo site_url('accountant/AccountantLedgerController?accountName='.$row2->accountNameDebit);?>"
+                  >
                   <?php echo $row2->accountNameDebit; ?>
+                  </a>
                   <br></br>
                   <?php }?>
                 <?php }?>
@@ -179,13 +197,13 @@
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
               <?php if($row->dateTime == $row2->dateDebit){?>
-                $<?php echo number_format($row2->amountDebit, 2);?>
+                <?php echo number_format($row2->amountDebit, 2);?>
                   <br></br>
                 <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                $<?php echo number_format($row3->amountCredit, 2); ?>
+                <?php echo number_format($row3->amountCredit, 2); ?>
                 <br></br>
               <?php }?>
               <?php }?>

@@ -128,7 +128,7 @@
                         <td>
                         <label for="typeOfJournal">Status</label>
                         <select class="form-control" name="status" required>
-                          <option>Pending</option>
+                          <option>Action Required</option>
                           <option>Approved</option>
                         </select>
                       </td>
@@ -208,18 +208,19 @@
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
               <?php if($row->dateTime == $row2->dateDebit){?>
-                $<?php echo number_format($row2->amountDebit, 2);?>
+                <?php echo number_format($row2->amountDebit, 2);?>
                   <br></br>
                 <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                $<?php echo number_format($row3->amountCredit, 2); ?>
+                <?php echo number_format($row3->amountCredit, 2); ?>
                 <br></br>
               <?php }?>
               <?php }?>
             </td>            
-            <?php if($row->status == 'Pending'){?>
+            </td>            
+            <?php if($row->status == 'Action Needed'){?>
               <td class="text-center"><button type="button" class="btn btn-success"><a class="text-white"href="<?php echo site_url('manager/ManagerJournalController/edit');?>/<?php echo $row->id;?>">Approve</a></button> <button type="button" class="btn btn-danger"><a class="text-white" href="<?php echo site_url('manager/ManagerJournalController/editReject');?>/<?php echo $row->id;?>">Reject</a></button></td>
             <?php } else{?>
                 <td class="text-center"><?php echo $row->status; ?></td>
