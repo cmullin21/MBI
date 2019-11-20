@@ -1,3 +1,17 @@
+<head>
+  <style>
+    .clickable {
+      text-decoration: none;
+      color: black;
+    }
+
+    .clickable:hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
 <div class="container">
   <div class="row">
     <div class="col">
@@ -159,13 +173,23 @@
             <td class="text-center"><?php echo $row->dateTime; ?></td>
             <td><?php foreach($jDebits as $row2){?>
                 <?php if($row->dateTime == $row2->dateDebit){?>
-                  <?php echo $row2->accountNameDebit; ?>
+                  <a 
+                    class="clickable" 
+                    href="<?php echo site_url('manager/ManagerLedgerController?accountName='.$row2->accountNameDebit);?>"
+                  >
+                    <?php echo "$row2->accountNameDebit"; ?>
+                  </a>
                   <br></br>
                   <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                <?php echo "&nbsp &nbsp &nbsp $row3->accountNameCredit" ?>
+                <a 
+                  class="clickable" 
+                  href="<?php echo site_url('manager/ManagerLedgerController?accountName='.$row3->accountNameCredit);?>"
+                >
+                  <?php echo "&nbsp &nbsp &nbsp $row3->accountNameCredit" ?>
+                </a>
                 <br></br>
               <?php }?>
               <?php }?>

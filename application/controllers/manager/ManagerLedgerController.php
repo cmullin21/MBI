@@ -10,8 +10,14 @@ class managerLedgerController extends CI_Controller {
   }
 	public function index()
 	{
+
+    $name = $_GET['accountName'];
+    $query = "SELECT * FROM jentry WHERE accountName = '$name'";
+    $dbResponse = $this->db->query($query);
+    $data['result'] = $dbResponse->result();
+
     $this->load->view('headers/managerHeader');
-	$this->load->view('manager/managerLedgerView');
+	  $this->load->view('manager/managerLedgerView', $data);
     $this->load->view('footers/footer');
   }
   
@@ -19,8 +25,7 @@ class managerLedgerController extends CI_Controller {
     $data['result'][] = $this->Ledger_model->allJournalsFrom1Account($accountName);
     // $data['results'] = $data;
     $this->load->view('headers/managerHeader');
-	$this->load->view('manager/ManagerLedgerView', $data);
+	  $this->load->view('manager/ManagerLedgerView', $data);
     $this->load->view('footers/footer');
   }
-
 }
