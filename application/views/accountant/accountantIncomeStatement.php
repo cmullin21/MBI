@@ -57,7 +57,7 @@
             <?php }?>
 
             <tr>
-                <td>Total Revenues</td>
+                <td class="font-weight-bold">Total Revenues</td>
                 <td></td>
                 <td class="cell-right text-right font-weight-bold">
                     <p class="doubleUnderline no-margin">
@@ -108,7 +108,7 @@
             </tr>
 
             <tr>
-                <td>Net Income (Loss)</td>
+                <td class="font-weight-bold">Net Income (Loss)</td>
                 <td></td>
                 <td class="cell-right text-right font-weight-bold">
                     <p class="doubleUnderline no-margin">

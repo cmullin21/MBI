@@ -69,7 +69,7 @@
                           ?>
                         </td>
                         <td>
-                          <input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list txt" required="" />
+                          <input type="number" name="amountDebit[]" placeholder="Amount" class="debitAmount" required="" />
                         </td>
                         <td><button type="button" name="addDebit" id="addDebit" class="btn btn-success">+</button></td>
                       </tr>
@@ -93,7 +93,7 @@
                           </td>
 
                           <td>
-                            <input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list txt" required="" />
+                            <input type="number" name="amountCredit[]" placeholder="Amount" class="creditAmount" required="" />
                           </td>
                           <td><button type="button" name="addCredit" id="addCredit" class="btn btn-success">+</button></td>
                         </tr>
@@ -121,10 +121,22 @@
                           <input type="file" class="form-control" name="file">
                         </div>
                       </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="debitSum">Debit Total:</label>
+                          <div><span id="debitSum"></span></div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="creditSum">Credit Total:</label>
+                          <div><span id="creditSum"></span></div>
+                        </div>
+                      </div>
                     </div>
 
                     <!-- Submit Button -->
-                    <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" />
+                    <input type="submit" name="submit" id="submitBtn" class="btn btn-primary" value="Submit" />
                   </div>
                 </div>
               </form>
@@ -145,6 +157,7 @@
           <th class="text-center" scope="col">Amount</th>
           <th class="text-center" scope="col">Status</th>
           <th class="text-center" scope="col">Added By</th>
+          <th class="text-center" scope="col">Type Of Journal</th>
         </tr>
       </thead>
       <tbody>
@@ -166,19 +179,20 @@
             </td>
             <td class="text-right"><?php foreach($jDebits as $row2){?>
               <?php if($row->dateTime == $row2->dateDebit){?>
-                $<?php echo $row2->amountDebit;?>
+                $<?php echo number_format($row2->amountDebit, 2);?>
                   <br></br>
                 <?php }?>
                 <?php }?>
               <?php foreach($jCredits as $row3){?>
                 <?php if($row->dateTime == $row3->dateCredit){?>
-                $<?php echo $row3->amountCredit; ?>
+                $<?php echo number_format($row3->amountCredit, 2); ?>
                 <br></br>
               <?php }?>
               <?php }?>
             </td>            
             <td class="text-center"><?php echo $row->status; ?></td>
             <td class="text-center"><?php echo $row->addedBy; ?></td>
+            <td class="text-center"><?php echo $row->typeOfJournal; ?></td>
           </tr>
       <?php }?>
       </tbody>
@@ -193,7 +207,7 @@
           var maxDebit = 10;
           if(i<maxDebit){
              i++;
-             $('#dynamic_Debitfield').append('<tr id="rowDebit'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="countDebit[]"><td><select class="form-control" name="accountNameDebit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountDebit[]" placeholder="Amount" class="form-control name_list txt" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_removeDebit">X</button></td></tr>');
+             $('#dynamic_Debitfield').append('<tr id="rowDebit'+i+'" class="dynamic-added"><input type="hidden" value="6437" name="countDebit[]"><td><select class="form-control" name="accountNameDebit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountDebit[]" placeholder="Amount" class="debitAmount" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_removeDebit">X</button></td></tr>');
         }});
 
         $(document).on('click', '.btn_removeDebit', function(){
@@ -212,7 +226,7 @@
           var maxCredit = 10;
           if(j<maxCredit){
              j++;
-             $('#dynamic_Creditfield').append('<tr id="rowCredit'+j+'" class="dynamic-added"><input type="hidden" value="6437" name="countCredit[]"><td><select class="form-control" name="accountNameCredit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountCredit[]" placeholder="Amount" class="form-control name_list txt" required /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_removeCredit">X</button></td></tr>');
+             $('#dynamic_Creditfield').append('<tr id="rowCredit'+j+'" class="dynamic-added"><input type="hidden" value="6437" name="countCredit[]"><td><select class="form-control" name="accountNameCredit[]" required><option>Please select an account</option><?php foreach($accounts as $row){echo '<option value="'.$row->accountName.'">'.$row->accountName.'</option>';}?>/></td><td><input type="number" name="amountCredit[]" placeholder="Amount" class="creditAmount" required /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_removeCredit">X</button></td></tr>');
         }});
 
         $(document).on('click', '.btn_removeCredit', function(){
@@ -221,4 +235,42 @@
              $('#rowCredit'+button_id+'').remove();
         });
       });
+
+
+      function calculateDebit() {
+        var debitSum = 0;
+        //iterate through each textboxes and add the values
+        $(".debitAmount").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                debitSum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#debitSum").html(debitSum.toFixed(2));
+      }
+      $("table").on("keyup", ".debitAmount", function () {
+        calculateDebit();
+      });
+
+      function calculateCredit() {
+        var creditSum = 0;
+        //iterate through each textboxes and add the values
+        $(".creditAmount").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                creditSum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#creditSum").html(creditSum.toFixed(2));
+      }
+      $("table").on("keyup", ".creditAmount", function () {
+        calculateCredit();
+      });
+
   </script>

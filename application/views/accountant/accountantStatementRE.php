@@ -25,19 +25,19 @@
             <?php foreach($retEarn as $row) {?>
             <tr>
                 <td>Add: Net Income</td>
-                <td class="text-right"><?php echo number_format($row->balance, 2); ?></td>
+                <td class="text-right"><?php echo number_format($row->credit, 2); ?></td>
             </tr>
             <?php }?>
             <?php foreach($retEarn as $row) {?>
             <tr>
                 <td>Less: Dividends </td>
-                <td class="text-right"><?php echo number_format($row->initialBalance, 2); ?></td>
+                <td class="text-right"><?php echo number_format($row->debit, 2); ?></td>
             </tr>
             <?php }?>
             <?php foreach($retEarn as $row) {?>
             <tr>
                 <td>End Retained Earnings </td>
-                <td class="text-right">$<?php echo number_format($row->balance, 2); ?></td>
+                <td class="text-right">$<?php echo number_format($row->credit, 2); ?></td>
             </tr>
             <?php }?>
         </tr>

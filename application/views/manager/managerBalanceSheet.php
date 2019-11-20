@@ -17,7 +17,7 @@
 <div class="container">
     <h3 class="text-center">MBI</h3>
     <h3 class="text-center">Balance Sheet</h3>
-    <h3 class="text-center">As of November 11th, 2019</h3>
+    <h3 class="text-center">As of <?php echo date("F d, Y")?></h3>
     
     <br>
    
@@ -56,10 +56,10 @@
             <?php }?>
 
             <tr>
-                <td class="font-weight-bold">Total Expenses</td>
+                <td class="font-weight-bold">Total Assets</td>
                 <td></td>
                 <td class="cell-right text-right font-weight-bold">
-                    <p class="doubleUnderline no-margin">$27,295.00</p>
+                    <p class="doubleUnderline no-margin">$26,795.00</p>
                 </td>
             </tr>
             
@@ -103,7 +103,7 @@
                 <td class="font-weight-bold">Total Liability</td>
                 <td></td>
                 <td class="cell-right text-right font-weight-bold">
-                    <p class="doubleUnderline no-margin">$2,520.00</p>
+                    <p class="doubleUnderline no-margin">$2,020.00</p>
                 </td>
             </tr>
 
@@ -150,10 +150,10 @@
                 <td class="font-weight-bold"></td>
                 <div class="col-cells">
                     <td class="text-right font-weight-bold">
-                        <p class="doubleUnderline no-margin">$27,295.00</p>
+                        <p class="doubleUnderline no-margin">$26,795.00</p>
                     </td>
                     <td class="cell-right text-right font-weight-bold">
-                        <p class="doubleUnderline no-margin">$27,295.00</p>
+                        <p class="doubleUnderline no-margin">$26,795.00</p>
                     </td>
                 </div>
             </tr>
