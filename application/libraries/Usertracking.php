@@ -350,7 +350,7 @@ class Usertracking
 
         //rename the table
         global $CI;
-        $db_prefix = $CI->db->dbprefix;
+        //$db_prefix = $CI->db->dbprefix;
         $this->CI->dbforge->rename_table($db_prefix . 'usertracking', 'usertracking_backup_' . time());
         $this->CI->db->query("UNLOCK TABLES;");
 
