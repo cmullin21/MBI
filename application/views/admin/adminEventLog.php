@@ -19,7 +19,6 @@
             <td class="text-center"><?php echo $row->timestamp; ?></td>
             <td class="text-center"><?php echo $row->message; ?></td>
           </tr>
-          <tr>
           <?php }?>
     </tbody>
     

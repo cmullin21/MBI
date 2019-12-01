@@ -8,7 +8,7 @@ class Event_log extends CI_Model {
   }
 
   function getAllData(){
-    $query = $this->db->query('SELECT * FROM usertracking');
+    $query = $this->db->query('SELECT * FROM eventlog');
     return $query->result();
   }
 }
