@@ -11,4 +11,10 @@ class Event_log extends CI_Model {
     $query = $this->db->query('SELECT * FROM eventlog');
     return $query->result();
   }
+
+  function getData($id) {
+    $query = $this->db->query('SELECT * FROM journals WHERE `id` =' .$id);
+    $this->db->where('users', $id);
+    return $query->row();
+  }
 }
